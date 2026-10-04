@@ -238,11 +238,6 @@ main {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.dropdown-left .dropdown {
-    left: 0;
-    right: auto;
-}
-
 .dropdown.is-open {
     display: block;
 }
@@ -255,8 +250,7 @@ main {
 
 .dropdown a:hover,
 .dropdown a:focus-visible {
-    background-color: var(--quaternary-color);
-    color: var(--primary-color);
+    color: var(--tertiary-color);
 }
 
 /* ---------- Footer ---------- */
@@ -334,7 +328,7 @@ button {
 
 /* ---------- Kleine Bildschirme ---------- */
 
-@media (max-width: 840px) {
+@media (max-width: 768px) {
     /* Logo links, Burger rechts */
     .main-navigation {
         justify-content: space-between;

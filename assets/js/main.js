@@ -21,6 +21,11 @@ function setDropdown(item, open) {
     button.setAttribute('aria-expanded', String(open));
 }
 
+// true, solange das Hamburger-Menü aktiv ist (Smartphone-Ansicht)
+function isHamburgerActive() {
+    return getComputedStyle(toggle).display !== 'none';
+}
+
 function closeAllDropdowns(except = null) {
     dropdownItems.forEach((item) => {
         if (item !== except) setDropdown(item, false);
@@ -32,15 +37,16 @@ dropdownItems.forEach((item) => {
 
     button.addEventListener('click', () => {
         const willOpen = button.getAttribute('aria-expanded') !== 'true';
-        setDropdown(item, willOpen);   // andere Dropdowns bleiben unverändert
+        // Desktop: nur ein Dropdown gleichzeitig. Smartphone: andere bleiben offen.
+        if (!isHamburgerActive()) closeAllDropdowns(item);
+        setDropdown(item, willOpen);
     });
 });
 
 // Dropdowns schließen bei Klick außerhalb
 document.addEventListener('click', (e) => {
     // Im Hamburger-Menü soll ein Tipp auf freie Fläche im Menü nichts schließen
-    const hamburgerActive = getComputedStyle(toggle).display !== 'none';
-    if (hamburgerActive && e.target.closest('#main-menu')) return;
+    if (isHamburgerActive() && e.target.closest('#main-menu')) return;
 
     if (!e.target.closest('.has-dropdown')) closeAllDropdowns();
 });
