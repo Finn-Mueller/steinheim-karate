@@ -1,85 +1,328 @@
-*{
-    margin: 0;
-    padding: 0;
+:root {
+    --primary-color: #2f3e46; /* header, footer */
+    --secondary-color: #354f52; /* normal text */
+    --tertiary-color: #52796f; /* hover effects for highlighting */
+    --quaternary-color: #84a98c; /* background for highlighted items */
+    --quinary-color: #cad2c5; /* background for header, footer */
+    --senary-color: #e0e5db; /* background for dropdown menu */
+    --background-color: #ffffff;
+
+    --font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --max-width: 1200px;
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
 body {
+    margin: 0;
+    font-family: var(--font-family);
+    color: var(--secondary-color);
+    background: var(--background-color);
+    line-height: 1.2;
+
+    /* Footer immer am unteren Rand */
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
-    font-family: Arial, sans-serif;
+    min-height: 100dvh;
 }
 
-/* - - - - - */
+main {
+    flex: 1;
+}
 
-.main-menu {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
+/* Wiederverwendbarer Wrapper für Inhalt (main, footer, ...) */
+.container {
     width: 100%;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--quinary-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.main-navigation {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: white;
-    border-bottom: 1px solid lightgray;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem 0.75rem 1rem 0.75rem;
 }
 
-.menu-links {
-    display: flex;
-    align-items: center;
-    list-style: none;
-    width: 100%;
-}
-
-.menu-links a {
-    color: black;
-    text-decoration: none;
-    transition: color 0.2s;
-    padding: 1rem 1rem;
-}
-
-.menu-links a:hover {
-    /*background-color: #f0ff;*/
-    color: #4da6ff;
-}
+/* ---------- Logo ---------- */
 
 .logo {
-    margin-right: auto;
-}
-
-.logo a {
     display: flex;
-    align-items: center;
-    gap: 1rem;
+    flex-direction: column;
+    line-height: 1.2;
     text-decoration: none;
-    color: black;
-    white-space: nowrap;
-    flex-shrink: 0;
-    padding: 0.1rem 0.1rem;
+    color: var(--primary-color);
 }
 
-.logo a:hover {
-    color: black;
+.logo-title {
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
-.logo img {
-    height: 3rem;
-    display: block;
-    flex-shrink: 0;
+.logo-subtitle {
+    font-size: 0.9rem;
+    color: var(--tertiary-color);
 }
 
-.logo-text {
+/* ---------- Menü ---------- */
+
+.main-navigation-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;          /* neu: vertikal zentrieren */
+    gap: 0.5rem 1.5rem;
+}
+
+.main-navigation-links a {
+    display: inline-flex;         /* neu */
+    align-items: center;          /* neu */
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 0.5rem 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.main-navigation-links a:hover,
+.main-navigation-links a:focus-visible {
+    color: var(--tertiary-color);
+}
+
+.main-navigation-links a:focus-visible {
+    outline: 2px solid var(--tertiary-color);
+    outline-offset: 4px;
+}
+
+/* ---------- Kontakt-Button ---------- */
+
+.main-navigation-links .main-navigation-links-contact {
+    background-color: var(--primary-color);
+    color: var(--quinary-color);
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.6rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.main-navigation-links .main-navigation-links-contact:hover,
+.main-navigation-links .main-navigation-links-contact:focus-visible {
+    background-color: var(--tertiary-color);
+    color: var(--background-color);
+}
+
+.main-navigation-links .main-navigation-links-contact:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 3px;
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem 0.75rem 1rem 0.75rem;
+}
+
+.footer-brand {
     display: flex;
     flex-direction: column;
     line-height: 1.2;
 }
 
-.logo-title {
-    font-weight: bold;
-    font-size: 1.6rem;
+.footer-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
 }
 
-.logo-subtitle {
-    font-size: 0.8rem;
-    color: gray;
+.footer-subtitle {
+    font-size: 0.9rem;
+    color: var(--tertiary-color);
+}
+
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;          /* neu */
+    gap: 0.5rem 1.5rem;
+}
+
+.footer-links a {
+    display: inline-flex;         /* neu */
+    align-items: center;          /* neu */
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 0.5rem 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    color: var(--tertiary-color);
+}
+
+.footer-links a:focus-visible {
+    outline: 2px solid var(--tertiary-color);
+    outline-offset: 4px;
+}
+
+/* ---------- Hamburger-Button ---------- */
+
+.nav-toggle {
+    display: none;
+    background: none;
+    border: 0;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.nav-toggle:focus-visible {
+    outline: 2px solid var(--tertiary-color);
+    outline-offset: 2px;
+}
+
+.nav-toggle-bar {
+    display: block;
+    width: 1.75rem;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle-bar + .nav-toggle-bar {
+    margin-top: 5px;
+}
+
+/* Animation zum "X" */
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ---------- Tap-Feedback (Handy) ---------- */
+
+a, button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- Kleine Bildschirme ---------- */
+
+@media (max-width: 768px) {
+    .main-navigation {
+        justify-content: space-between;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    /* Menü als Overlay direkt unter dem Header */
+    .main-navigation-links {
+        display: none;
+        flex-direction: column;
+        flex-wrap: nowrap;        /* neu: keine zweite Spalte */
+        align-items: center;
+        gap: 0.25rem;
+
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        padding: 0.5rem 1.5rem 1rem;
+        background-color: var(--senary-color);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+
+        max-height: calc(100vh - 5rem);    /* Fallback */
+        max-height: calc(100dvh - 5rem);   /* sichtbare Höhe minus Header */
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+
+    .main-navigation-links li {
+        flex-shrink: 0;           /* Einträge nicht zusammenquetschen */
+    }
+
+    .main-navigation-links .main-navigation-links-contact {
+        color: var(--senary-color);              /* Schriftfarbe im Normalzustand */
+        background-color: var(--secondary-color);  /* Hintergrund des Buttons */
+    }
+
+    .main-navigation-links .main-navigation-links-contact:hover,
+    .main-navigation-links .main-navigation-links-contact:focus-visible {
+        color: var(--background-color);          /* Schriftfarbe bei Hover/Fokus */
+        background-color: var(--tertiary-color);
+    }
+
+    .main-navigation-links.is-open {
+        display: flex;
+    }
+
+    .main-navigation-links a {
+        padding: 0.75rem 2rem;
+    }
+
+    .main-navigation-links .main-navigation-links-contact {
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    /* Footer wie bisher */
+    .footer-inner {
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
 }

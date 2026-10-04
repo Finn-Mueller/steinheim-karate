@@ -7,25 +7,50 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <nav class="main-menu">
-        <ul class="menu-links">
-            <li class="logo">
-                <a href="index.html">
-                    <img src="assets/icons/einheitliche-kampfkunste.png" alt="Kempoka Ryu Logo">
-                    <span class="logo-text">
-                        <span class="logo-title">Kempoka Ryu</span>
-                        <span class="logo-subtitle">Steinheim</span>
-                    </span>
-                </a>
-            </li>
-            <li><a href="trainingsplan.html">Trainingsplan</a></li>
-            <li><a href="trainer-innen.html">Trainer-innen</a></li>
-            <li><a href="galerie.html">Galerie</a></li>
-            <li><a href="preise.html">Preise</a></li>
-            <li><a href="kontakt.html">Kontakt</a></li>
-        </ul>
-    </nav>
+    <header class="site-header">
+        <nav class="main-navigation">
+            <a href="/" class="logo">
+                <span class="logo-title">Kempoka Ryu</span>
+                <span class="logo-subtitle">Steinheim</span>
+            </a>
+
+            <button class="nav-toggle" type="button"
+                    aria-label="Menü öffnen"
+                    aria-expanded="false"
+                    aria-controls="main-menu">
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+                <span class="nav-toggle-bar"></span>
+            </button>
+
+            <ul class="main-navigation-links" id="main-menu">
+                <li><a href="trainingsplan.html">Trainingsplan</a></li>
+                <li><a href="trainer-innen.html">Trainer/-innen</a></li>
+                <li><a href="galerie.html">Galerie</a></li>
+                <li><a href="preise.html">Preise</a></li>
+                <li><a href="kontakt.html" class="main-navigation-links-contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <main class="container">
+        <p>Hier ist der Inhalt der Index-Seite.</p>
+    </main>
+
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <nav class="footer-navigation" aria-label="Rechtliches">
+                <ul class="footer-links">
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
 
     <script src="assets/js/main.js"></script>
+
 </body>
 </html>
