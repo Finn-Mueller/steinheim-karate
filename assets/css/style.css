@@ -334,7 +334,7 @@ button {
 
 /* ---------- Kleine Bildschirme ---------- */
 
-@media (max-width: 768px) {
+@media (max-width: 840px) {
     /* Logo links, Burger rechts */
     .main-navigation {
         justify-content: space-between;
