@@ -1,10 +1,11 @@
 :root {
-    --primary-color: #2f3e46; /* header, footer */
-    --secondary-color: #354f52; /* normal text */
-    --tertiary-color: #52796f; /* hover effects for highlighting */
+    --primary-color: #2f3e46;    /* header, footer */
+    --secondary-color: #354f52;  /* normal text */
+    --tertiary-color: #52796f;   /* hover effects for highlighting */
     --quaternary-color: #84a98c; /* background for highlighted items */
-    --quinary-color: #cad2c5; /* background for header, footer */
-    --senary-color: #e0e5db; /* background for dropdown menu */
+    --quinary-color: #cad2c5;    /* background for header, footer */
+    --senary-color: #e0e5db;     /* background for dropdown menus */
+    --septenary-color: #d2d9cc;  /* background for sub-links in dropdowns (mobile) */
     --background-color: #ffffff;
 
     --font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -27,15 +28,15 @@ body {
     /* Footer immer am unteren Rand */
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 100vh;   /* Fallback */
+    min-height: 100dvh;  /* sichtbare Höhe auf Smartphones */
 }
 
 main {
     flex: 1;
 }
 
-/* Wiederverwendbarer Wrapper für Inhalt (main, footer, ...) */
+/* Wiederverwendbarer Wrapper für Inhalt */
 .container {
     width: 100%;
     max-width: var(--max-width);
@@ -62,7 +63,7 @@ main {
 
     max-width: var(--max-width);
     margin: 0 auto;
-    padding: 1rem 0.75rem 1rem 0.75rem;
+    padding: 1rem 1.5rem;
 }
 
 /* ---------- Logo ---------- */
@@ -93,13 +94,13 @@ main {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;          /* neu: vertikal zentrieren */
+    align-items: center;
     gap: 0.5rem 1.5rem;
 }
 
 .main-navigation-links a {
-    display: inline-flex;         /* neu */
-    align-items: center;          /* neu */
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
     color: var(--primary-color);
     padding: 0.5rem 0.25rem;
@@ -138,72 +139,6 @@ main {
     outline-offset: 3px;
 }
 
-/* ---------- Footer ---------- */
-
-.site-footer {
-    background-color: var(--quinary-color);
-    color: var(--primary-color);
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 1rem 0.75rem 1rem 0.75rem;
-}
-
-.footer-brand {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.2;
-}
-
-.footer-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--primary-color);
-}
-
-.footer-subtitle {
-    font-size: 0.9rem;
-    color: var(--tertiary-color);
-}
-
-.footer-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;          /* neu */
-    gap: 0.5rem 1.5rem;
-}
-
-.footer-links a {
-    display: inline-flex;         /* neu */
-    align-items: center;          /* neu */
-    text-decoration: none;
-    color: var(--primary-color);
-    padding: 0.5rem 0.25rem;
-    transition: color 0.2s ease;
-}
-
-.footer-links a:hover,
-.footer-links a:focus-visible {
-    color: var(--tertiary-color);
-}
-
-.footer-links a:focus-visible {
-    outline: 2px solid var(--tertiary-color);
-    outline-offset: 4px;
-}
-
 /* ---------- Hamburger-Button ---------- */
 
 .nav-toggle {
@@ -211,6 +146,7 @@ main {
     background: none;
     border: 0;
     padding: 0.5rem;
+    margin-right: -0.5rem;  /* Balken bündig mit dem Seitenrand */
     cursor: pointer;
 }
 
@@ -243,30 +179,176 @@ main {
     transform: translateY(-8px) rotate(-45deg);
 }
 
+/* ---------- Dropdown (Desktop) ---------- */
+
+.has-dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    border: 0;
+    font: inherit;
+    color: var(--primary-color);
+    padding: 0.5rem 0.25rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+/* kleiner Pfeil */
+.dropdown-toggle::after {
+    content: "";
+    width: 0.4rem;
+    height: 0.4rem;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: translateY(-2px) rotate(45deg);
+    transition: transform 0.2s ease;
+}
+
+.dropdown-toggle[aria-expanded="true"]::after {
+    transform: translateY(1px) rotate(-135deg);
+}
+
+.dropdown-toggle:hover,
+.dropdown-toggle:focus-visible {
+    color: var(--tertiary-color);
+}
+
+.dropdown-toggle:focus-visible {
+    outline: 2px solid var(--tertiary-color);
+    outline-offset: 4px;
+}
+
+.dropdown {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem;
+    min-width: 12rem;
+
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--senary-color);
+    border-radius: 0.6rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-left .dropdown {
+    left: 0;
+    right: auto;
+}
+
+.dropdown.is-open {
+    display: block;
+}
+
+.dropdown a {
+    display: block;
+    padding: 0.6rem 0.75rem;
+    border-radius: 0.4rem;
+}
+
+.dropdown a:hover,
+.dropdown a:focus-visible {
+    background-color: var(--quaternary-color);
+    color: var(--primary-color);
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+    background-color: var(--quinary-color);
+    color: var(--primary-color);
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.footer-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.footer-subtitle {
+    font-size: 0.9rem;
+    color: var(--tertiary-color);
+}
+
+.footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+}
+
+.footer-links a {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--primary-color);
+    padding: 0.5rem 0.25rem;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+    color: var(--tertiary-color);
+}
+
+.footer-links a:focus-visible {
+    outline: 2px solid var(--tertiary-color);
+    outline-offset: 4px;
+}
+
 /* ---------- Tap-Feedback (Handy) ---------- */
 
-a, button {
+a,
+button {
     -webkit-tap-highlight-color: transparent;
 }
 
 /* ---------- Kleine Bildschirme ---------- */
 
 @media (max-width: 768px) {
+    /* Logo links, Burger rechts */
     .main-navigation {
         justify-content: space-between;
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
     }
 
     .nav-toggle {
         display: block;
     }
 
-    /* Menü als Overlay direkt unter dem Header */
+    /* Menü als Overlay direkt unter dem Header, mittig, scrollbar */
     .main-navigation-links {
         display: none;
         flex-direction: column;
-        flex-wrap: nowrap;        /* neu: keine zweite Spalte */
+        flex-wrap: nowrap;
         align-items: center;
         gap: 0.25rem;
 
@@ -276,43 +358,109 @@ a, button {
         right: 0;
         padding: 0.5rem 1.5rem 1rem;
         background-color: var(--senary-color);
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
 
-        max-height: calc(100vh - 5rem);    /* Fallback */
-        max-height: calc(100dvh - 5rem);   /* sichtbare Höhe minus Header */
+        max-height: calc(100vh - 5rem);
+        max-height: calc(100dvh - var(--header-height, 5rem));
         overflow-y: auto;
         overscroll-behavior: contain;
-    }
-
-    .main-navigation-links li {
-        flex-shrink: 0;           /* Einträge nicht zusammenquetschen */
-    }
-
-    .main-navigation-links .main-navigation-links-contact {
-        color: var(--senary-color);              /* Schriftfarbe im Normalzustand */
-        background-color: var(--secondary-color);  /* Hintergrund des Buttons */
-    }
-
-    .main-navigation-links .main-navigation-links-contact:hover,
-    .main-navigation-links .main-navigation-links-contact:focus-visible {
-        color: var(--background-color);          /* Schriftfarbe bei Hover/Fokus */
-        background-color: var(--tertiary-color);
     }
 
     .main-navigation-links.is-open {
         display: flex;
     }
 
-    .main-navigation-links a {
-        padding: 0.75rem 2rem;
+    .main-navigation-links > li {
+        width: 100%;
+        flex-shrink: 0;
     }
 
-    .main-navigation-links .main-navigation-links-contact {
+    /* Links und Dropdown-Button sehen gleich aus: mittig, ohne Hintergrund */
+    .main-navigation-links a,
+    .dropdown-toggle {
+        display: inline-flex;
         justify-content: center;
-        margin-top: 0.5rem;
+        align-items: center;
+        width: 100%;
+        padding: 0.75rem 1.25rem;
+        color: var(--primary-color);
+        border-radius: 0.6rem;
     }
 
-    /* Footer wie bisher */
+    .main-navigation-links a:hover,
+    .main-navigation-links a:focus-visible {
+        color: var(--primary-color);
+        background-color: var(--quaternary-color);
+    }
+
+    /* Dropdown-Button: ändert beim Antippen seine Farbe nicht */
+    .dropdown-toggle,
+    .dropdown-toggle:hover,
+    .dropdown-toggle:focus-visible {
+        color: var(--primary-color);
+        background: none;
+    }
+
+    /* Hover-Hintergrund nur mit echter Maus, nicht auf Touchgeräten */
+    @media (hover: hover) {
+        .dropdown-toggle:hover {
+            background-color: var(--quaternary-color);
+        }
+    }
+
+    /* Kontakt-Button */
+    .main-navigation-links .main-navigation-links-contact {
+        margin-top: 0.5rem;
+        color: var(--senary-color);
+        background-color: var(--primary-color);
+    }
+
+    .main-navigation-links .main-navigation-links-contact:hover,
+    .main-navigation-links .main-navigation-links-contact:focus-visible {
+        color: var(--background-color);
+        background-color: var(--tertiary-color);
+    }
+
+    /* Dropdown im Hamburger-Menü: klappt darunter auf */
+    .has-dropdown {
+        width: 100%;
+    }
+
+    .dropdown {
+        position: static;
+        min-width: 0;
+        margin-top: 0.25rem;
+        padding: 0.25rem;
+        background-color: var(--septenary-color);  /* durchgängiger Hintergrund */
+        box-shadow: none;
+        border-radius: 0.6rem;
+    }
+
+    .dropdown.is-open {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .dropdown li {
+        width: 100%;
+    }
+
+    .dropdown a {
+        display: inline-flex;
+        justify-content: center;
+        width: 100%;
+        padding: 0.6rem 1.25rem;
+        background-color: transparent;
+    }
+
+    .dropdown a:hover,
+    .dropdown a:focus-visible {
+        background-color: var(--quaternary-color);
+    }
+
+    /* Footer */
     .footer-inner {
         justify-content: center;
         text-align: center;

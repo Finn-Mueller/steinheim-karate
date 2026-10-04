@@ -26,8 +26,34 @@
             <ul class="main-navigation-links" id="main-menu">
                 <li><a href="trainingsplan.html">Trainingsplan</a></li>
                 <li><a href="trainer-innen.html">Trainer/-innen</a></li>
-                <li><a href="galerie.html">Galerie</a></li>
+
+                <li class="has-dropdown dropdown-left">
+                    <button class="dropdown-toggle" type="button"
+                            aria-expanded="false"
+                            aria-controls="gallery-menu">
+                        Galerie
+                    </button>
+                    <ul class="dropdown" id="gallery-menu">
+                        <li><a href="galerie.html">Alle Bilder</a></li>
+                        <li><a href="galerie-turniere.html">Turniere</a></li>
+                        <li><a href="galerie-sonstiges.html">Sonstiges</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="preise.html">Preise</a></li>
+
+                <li class="has-dropdown">
+                    <button class="dropdown-toggle" type="button"
+                            aria-expanded="false"
+                            aria-controls="more-menu">
+                        Mehr
+                    </button>
+                    <ul class="dropdown" id="more-menu">
+                        <li><a href="termine.html">Termine</a></li>
+                        <li><a href="links.html">Links</a></li>
+                    </ul>
+                </li>
+
                 <li><a href="kontakt.html" class="main-navigation-links-contact">Kontakt</a></li>
             </ul>
         </nav>
@@ -35,10 +61,10 @@
 
 
     <main class="container">
-        <p>Hier ist der Inhalt der Index-Seite.</p>
+        <p>Hier ist der Inhalt der Seite.</p>
     </main>
 
-
+    
     <footer class="site-footer">
         <div class="footer-inner">
             <nav class="footer-navigation" aria-label="Rechtliches">
@@ -51,6 +77,5 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
-
 </body>
 </html>
