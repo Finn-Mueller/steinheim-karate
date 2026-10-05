@@ -2,6 +2,7 @@ const header = document.querySelector('.site-header');
 const toggle = document.querySelector('.nav-toggle');
 const menu = document.getElementById('main-menu');
 const dropdownItems = document.querySelectorAll('.has-dropdown');
+const navigationPanels = document.querySelectorAll('.dropdown');
 
 /* ---------- Social-Media-Links: URLs zentral hier pflegen ---------- */
 
@@ -61,10 +62,16 @@ function updateNavigationFocus() {
     );
 }
 
+menu.inert = getComputedStyle(toggle).display !== 'none';
+navigationPanels.forEach((panel) => {
+    panel.inert = true;
+});
+
 function setDropdown(item, open) {
     const button = item.querySelector('.dropdown-toggle');
     const list = item.querySelector('.dropdown');
     list.classList.toggle('is-open', open);
+    list.inert = !open;
     button.setAttribute('aria-expanded', String(open));
     updateNavigationFocus();
 }
@@ -103,6 +110,7 @@ document.addEventListener('click', (e) => {
 
 function setMenu(open) {
     menu.classList.toggle('is-open', open);
+    menu.inert = !open && isHamburgerActive();
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
     if (!open) closeAllDropdowns();
@@ -132,8 +140,8 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Beim Vergrößern des Fensters zurücksetzen (passend zum CSS-Breakpoint von 830px)
-window.matchMedia('(min-width: 831px)').addEventListener('change', (e) => {
-    if (e.matches) setMenu(false);
+window.matchMedia('(min-width: 831px)').addEventListener('change', () => {
+    setMenu(false);
 });
 
 
