@@ -53,11 +53,20 @@ window.addEventListener('resize', updateHeaderHeight);
 
 /* ---------- Dropdowns ---------- */
 
+function updateNavigationFocus() {
+    document.body.classList.toggle(
+        'navigation-focused',
+        toggle.getAttribute('aria-expanded') === 'true' ||
+            document.querySelector('.dropdown.is-open') !== null
+    );
+}
+
 function setDropdown(item, open) {
     const button = item.querySelector('.dropdown-toggle');
     const list = item.querySelector('.dropdown');
     list.classList.toggle('is-open', open);
     button.setAttribute('aria-expanded', String(open));
+    updateNavigationFocus();
 }
 
 // true, solange das Hamburger-Menü aktiv ist (Smartphone-Ansicht)
@@ -97,6 +106,7 @@ function setMenu(open) {
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
     if (!open) closeAllDropdowns();
+    updateNavigationFocus();
 }
 
 toggle.addEventListener('click', () => {
