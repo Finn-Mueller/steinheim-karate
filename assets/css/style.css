@@ -757,13 +757,14 @@ html {
 .events {
     list-style: none;
     margin: 0 0 2rem;
-    padding: 0;
+    padding: 0 0 0 2.5rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
 .event-card {
+    position: relative;
     display: flex;
     align-items: stretch;
     gap: 1.25rem;
@@ -772,6 +773,35 @@ html {
     border-left: 4px solid transparent;
     border-radius: 0.6rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-card::before,
+.event-card::after {
+    content: "";
+    position: absolute;
+    left: -2.2rem;
+}
+
+.event-card::before {
+    z-index: 1;
+    top: 1.25rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    border: 3px solid var(--tertiary-color);
+    border-radius: 50%;
+    background-color: var(--background-color);
+}
+
+.event-card:not(:last-child)::after {
+    top: 1.7rem;
+    bottom: -2.7rem;
+    left: -1.8rem;
+    width: 2px;
+    background-color: var(--quaternary-color);
+}
+
+.event-card.is-next::before {
+    background-color: var(--tertiary-color);
 }
 
 /* display:flex würde sonst das hidden-Attribut überschreiben */
@@ -813,6 +843,7 @@ html {
 
 .event-body {
     flex: 1;
+    max-width: 50%;
     min-width: 0;
 }
 
@@ -863,6 +894,12 @@ html {
 .event-text {
     margin: 0;
     line-height: 1.4;
+}
+
+@media (max-width: 600px) {
+    .event-body {
+        max-width: none;
+    }
 }
 
 .event-add {

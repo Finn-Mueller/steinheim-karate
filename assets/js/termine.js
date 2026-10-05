@@ -32,7 +32,7 @@
     }
 
     function mapsUrl(ev) {
-        const query = ev.adresse ? `${ev.ort}, ${ev.adresse}` : ev.ort;
+        const query = ev.adresse ? ` ${ev.adresse}` : ev.ort;
         return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
     }
 

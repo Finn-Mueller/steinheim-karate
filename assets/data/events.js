@@ -12,29 +12,29 @@
 */
 const EVENTS = [
     {
-        start: "2026-11-14",
+        start: "2026-10-10",
         typ: "Turnier",
-        titel: "Vereinsturnier",
+        titel: "14. Kempoka Ryu Cup",
         von: "10:00", bis: "16:00",
-        ort: "Sporthalle Steinheim",
-        adresse: "Musterstraße 1, 33184 Altenbeken",
-        text: "Interner Wettkampf für alle Gürtelgrade. Zuschauer sind willkommen."
+        ort: "Gymnasium Sporthalle Steinheim",
+        adresse: "Ostpreussenstr. 15, 32839 Steinheim",
+        text: "Offene Kempo-Meisterschaft für alle Stilrichtungen. Für alle Stilrichtungen und Verbände offen. Anmeldung über das Kontaktformular. Zuschauer sind herzlich willkommen."
     },
     {
-        start: "2026-12-05", ende: "2026-12-06",
-        typ: "Lehrgang",
-        titel: "Wochenend-Lehrgang",
-        ort: "Sporthalle Steinheim",
-        text: "Gasttrainer, Schwerpunkt Selbstverteidigung."
+        start: "2026-11-28",
+        typ: "Event",
+        titel: "Weihnachtsfeier",
+        von: "10:00", bis: "16:00",
+        text: "Interner Feier zum Jahresabschluss. Alle Mitglieder sind eingeladen. Bitte vorher anmelden."
     },
     {
-        start: "2026-12-18",
-        typ: "Prüfung",
-        titel: "Gürtelprüfung",
-        von: "18:00"
+        start: "2026-10-12", ende: "2027-10-25",
+        typ: "Trainingsfrei",
+        titel: "Herbstferien",
+        ausfall: true
     },
     {
-        start: "2026-12-25", ende: "2027-01-03",
+        start: "2026-12-23", ende: "2027-01-06",
         typ: "Trainingsfrei",
         titel: "Weihnachtspause",
         ausfall: true
