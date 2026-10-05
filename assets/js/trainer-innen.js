@@ -1,0 +1,43 @@
+(function () {
+    const trainerList = document.getElementById('trainers');
+    if (!trainerList) return;
+    if (typeof TRAINERS === 'undefined') {
+        throw new Error('Die Trainerdaten konnten nicht geladen werden.');
+    }
+
+    function createCard(trainer) {
+        const card = document.createElement('article');
+        card.className = 'trainer-card';
+
+        const photo = document.createElement('img');
+        photo.className = 'trainer-photo';
+        photo.src = `assets/images/trainer-innen/${trainer.photo}`;
+        photo.alt = trainer.name;
+        photo.loading = 'lazy';
+
+        const info = document.createElement('div');
+        info.className = 'trainer-info';
+
+        const name = document.createElement('h2');
+        name.className = 'trainer-name';
+        name.textContent = trainer.name;
+        info.append(name);
+
+        trainer.grades.forEach((grade) => {
+            const belt = document.createElement('p');
+            belt.className = 'trainer-belt';
+
+            const color = document.createElement('span');
+            color.className = `belt-color belt-${grade.belt}`;
+            color.setAttribute('aria-hidden', 'true');
+
+            belt.append(color, document.createTextNode(grade.label));
+            info.append(belt);
+        });
+
+        card.append(photo, info);
+        return card;
+    }
+
+    TRAINERS.forEach((trainer) => trainerList.append(createCard(trainer)));
+})();
