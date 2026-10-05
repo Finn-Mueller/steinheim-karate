@@ -351,6 +351,8 @@ body > :not(.site-header) {
     align-items: center;
     text-decoration: none;
     color: var(--primary-color);
+    font-size: 0.95rem;
+    font-weight: 600;
     padding: 0.5rem 0.25rem;
     transition: color 0.2s ease;
 }
