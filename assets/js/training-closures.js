@@ -1,0 +1,71 @@
+(function () {
+    const NOTICE_DAYS_BEFORE = 14; // Anzahl der Tage, die vor dem Ausfall angezeigt werden sollen
+    const notice = document.getElementById('training-closures');
+    const list = notice && notice.querySelector('.training-closures-list');
+    if (!notice || !list) return;
+
+    if (typeof EVENTS === 'undefined') {
+        console.error('Die Termindaten für Trainingsausfälle konnten nicht geladen werden.');
+        return;
+    }
+
+    function parseLocalDate(value) {
+        const [year, month, day] = value.split('-').map(Number);
+        return new Date(year, month - 1, day);
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const noticeLimit = new Date(today);
+    noticeLimit.setDate(noticeLimit.getDate() + NOTICE_DAYS_BEFORE);
+
+    const formatDate = new Intl.DateTimeFormat('de-DE', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+    const formatDay = new Intl.DateTimeFormat('de-DE', { day: 'numeric' });
+
+    const closures = EVENTS
+        .filter((event) => event.ausfall)
+        .filter((event) => {
+            const start = parseLocalDate(event.start);
+            const end = parseLocalDate(event.ende || event.start);
+            return end >= today && start <= noticeLimit;
+        })
+        .sort((a, b) => a.start.localeCompare(b.start));
+
+    closures.forEach((event) => {
+        const start = parseLocalDate(event.start);
+        const end = parseLocalDate(event.ende || event.start);
+        const item = document.createElement('li');
+        const title = document.createElement('strong');
+        const period = document.createElement('span');
+        period.className = 'training-closure-period';
+
+        title.textContent = `${event.titel}: `;
+        const startDate = document.createElement('span');
+        const sameMonth = start.getMonth() === end.getMonth()
+            && start.getFullYear() === end.getFullYear();
+        startDate.textContent = start.getTime() !== end.getTime() && sameMonth
+            ? ` ${formatDay.format(start)}.`
+            : ` ${formatDate.format(start)}`;
+        period.append(startDate);
+
+        if (start.getTime() !== end.getTime()) {
+            const separator = document.createElement('span');
+            separator.className = 'training-closure-range-separator';
+            separator.textContent = '\u00a0–';
+
+            const endDate = document.createElement('span');
+            endDate.className = 'training-closure-end-date';
+            endDate.textContent = ` ${formatDate.format(end)}`;
+            period.append(separator, endDate);
+        }
+
+        item.append(title, period);
+        list.append(item);
+    });
+
+    notice.hidden = closures.length === 0;
+})();

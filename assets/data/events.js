@@ -28,7 +28,7 @@ const EVENTS = [
         text: "Interne Feier zum Jahresabschluss. Alle Mitglieder sind eingeladen. Bitte vorher anmelden."
     },
     {
-        start: "2026-10-12", ende: "2027-10-25",
+        start: "2026-10-12", ende: "2026-10-25",
         typ: "Trainingsfrei",
         titel: "Herbstferien",
         ausfall: true

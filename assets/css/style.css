@@ -457,6 +457,47 @@ button {
     line-height: 1.4;
 }
 
+.training-closures {
+    margin: 0 0 1.5rem;
+    padding: 1.25rem;
+    border-left: 4px solid var(--warning-color);
+    border-radius: 0.6rem;
+    background-color: var(--senary-color);
+}
+
+.training-closures[hidden] {
+    display: none;
+}
+
+.training-closures h2 {
+    margin: 0 0 0.75rem;
+    color: var(--warning-color);
+    font-size: 1.2rem;
+}
+
+.training-closures-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.training-closures-list li {
+    padding-left: 0.15rem;
+    line-height: 1.4;
+}
+
+.training-closures-list strong {
+    color: var(--primary-color);
+}
+
+.training-closure-period {
+    display: inline-block;
+    white-space: nowrap;
+}
+
+
 .button {
     display: inline-block;
     padding: 0.5rem 1.25rem;

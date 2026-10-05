@@ -64,6 +64,11 @@
     <main class="container">
         <h1 class="page-title">Trainingsplan</h1>
 
+        <aside class="training-closures" id="training-closures" aria-labelledby="training-closures-title" hidden>
+            <h2 id="training-closures-title">Hinweis: Trainingsausfall</h2>
+            <ul class="training-closures-list"></ul>
+        </aside>
+
         <div class="schedule">
             <section class="schedule-card" aria-labelledby="tag-di-fr">
                 <h2 id="tag-di-fr" class="schedule-day">Dienstag &amp; Freitag</h2>
@@ -145,6 +150,8 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/data/events.js"></script>
+    <script src="assets/js/training-closures.js"></script>
 
 </body>
 </html>
