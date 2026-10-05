@@ -1,32 +1,6 @@
 
 .gallery-page {
-    padding-top: 2rem;
     padding-bottom: 4rem;
-}
-
-.gallery-intro {
-    max-width: 44rem;
-    margin: 0 auto 2rem;
-    text-align: center;
-}
-
-.gallery-eyebrow {
-    margin: 0 0 0.5rem;
-    color: var(--tertiary-color);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-}
-
-.gallery-intro .page-title {
-    margin: 0 0 0.75rem;
-    font-size: clamp(2rem, 5vw, 3rem);
-}
-
-.gallery-intro > p:last-child {
-    margin: 0;
-    line-height: 1.6;
 }
 
 .gallery-controls {
