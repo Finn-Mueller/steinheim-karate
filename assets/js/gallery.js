@@ -191,16 +191,38 @@ function setCategory(category) {
     });
 }
 
-function setYearOptions() {
+function setYearOptions(changedSelect) {
     const years = [...new Set(galleryAlbums.map(albumYear))].sort((a, b) => b - a);
-    [galleryYearFrom, galleryYearTo].forEach((select) => {
-        const options = years.map((year) => {
+    if (years.length === 0) {
+        galleryYearFrom.replaceChildren();
+        galleryYearTo.replaceChildren();
+        return;
+    }
+
+    let yearFrom = Number(galleryYearFrom.value) || Math.min(...years);
+    let yearTo = Number(galleryYearTo.value) || Math.max(...years);
+
+    if (yearFrom > yearTo) {
+        if (changedSelect === galleryYearFrom) yearTo = yearFrom;
+        else if (changedSelect === galleryYearTo) yearFrom = yearTo;
+        else {
+            yearFrom = 0;
+            yearTo = Number.MAX_SAFE_INTEGER;
+        }
+    }
+
+    [
+        [galleryYearFrom, years.filter((year) => year <= yearTo), yearFrom],
+        [galleryYearTo, years.filter((year) => year >= yearFrom), yearTo]
+    ].forEach(([select, availableYears, selectedYear]) => {
+        const options = availableYears.map((year) => {
             const option = document.createElement('option');
             option.value = String(year);
             option.textContent = String(year);
             return option;
         });
-        select.append(...options);
+        select.replaceChildren(...options);
+        select.value = String(selectedYear);
     });
 }
 
@@ -212,6 +234,7 @@ function applyUrlFilters() {
     const availableYears = new Set(galleryAlbums.map((album) => String(albumYear(album))));
     galleryYearFrom.value = availableYears.has(params.get('von')) ? params.get('von') : '';
     galleryYearTo.value = availableYears.has(params.get('bis')) ? params.get('bis') : '';
+    setYearOptions();
     renderGallery();
 }
 
@@ -223,8 +246,14 @@ galleryCategoryLinks.forEach((link) => {
     });
 });
 
-galleryYearFrom.addEventListener('change', renderGallery);
-galleryYearTo.addEventListener('change', renderGallery);
+galleryYearFrom.addEventListener('change', () => {
+    setYearOptions(galleryYearFrom);
+    renderGallery();
+});
+galleryYearTo.addEventListener('change', () => {
+    setYearOptions(galleryYearTo);
+    renderGallery();
+});
 galleryDialogClose.addEventListener('click', () => galleryDialog.close());
 galleryDialog.addEventListener('click', (event) => {
     if (event.target === galleryDialog) galleryDialog.close();

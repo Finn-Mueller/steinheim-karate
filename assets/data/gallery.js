@@ -18,7 +18,7 @@ window.GALLERY_ALBUMS = [
         photos: []
     },
     {
-        date: '2026-03-01',
+        date: '2025-03-01',
         category: 'lehrgaenge',
         title: 'Test-Lehrgang',
         folder: 'assets/images/gallery/lehrgaenge/2026-03-01-lehrgang/',
@@ -26,7 +26,7 @@ window.GALLERY_ALBUMS = [
         photos: []
     },
     {
-        date: '2026-03-01',
+        date: '2021-03-01',
         category: 'trainingslager',
         title: 'Test-Trainingslager',
         folder: 'assets/images/gallery/trainingslager/2026-03-01-trainingslager/',
