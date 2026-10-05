@@ -285,6 +285,14 @@ main {
     padding: 1rem 1.5rem;
 }
 
+.footer-inner.is-wrapped {
+    justify-content: center;
+}
+
+.footer-inner.is-wrapped .footer-social {
+    margin-left: 0;
+}
+
 .footer-brand {
     display: flex;
     flex-direction: column;
@@ -1005,7 +1013,7 @@ html {
 
 /* Trainingsfrei / Ausfall */
 .event-card.event-card-frei {
-    border-left-color: var(--warning-color);
+    border-left-color: transparent;
 }
 
 .event-card-frei .event-date {

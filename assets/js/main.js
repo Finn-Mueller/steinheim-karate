@@ -16,6 +16,32 @@ document.querySelectorAll('[data-social-link]').forEach((link) => {
     link.href = socialLinks[platform];
 });
 
+/* ---------- Footer-Ausrichtung bei Zeilenumbruch ---------- */
+
+const footerInner = document.querySelector('.footer-inner');
+const footerNavigation = footerInner?.querySelector('.footer-navigation');
+const footerSocial = footerInner?.querySelector('.footer-social');
+
+if (footerInner && footerNavigation && footerSocial) {
+    function updateFooterAlignment() {
+        const navigationRect = footerNavigation.getBoundingClientRect();
+        const socialRect = footerSocial.getBoundingClientRect();
+        const navigationCenter = navigationRect.top + navigationRect.height / 2;
+        const socialCenter = socialRect.top + socialRect.height / 2;
+
+        footerInner.classList.toggle(
+            'is-wrapped',
+            Math.abs(navigationCenter - socialCenter) > 1
+        );
+    }
+
+    const footerObserver = new ResizeObserver(updateFooterAlignment);
+    footerObserver.observe(footerInner);
+    footerObserver.observe(footerNavigation);
+    footerObserver.observe(footerSocial);
+    updateFooterAlignment();
+}
+
 /* ---------- Header-Höhe für die max-height des Menüs ---------- */
 
 function updateHeaderHeight() {
