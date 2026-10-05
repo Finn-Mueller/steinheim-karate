@@ -115,7 +115,7 @@ main {
     text-decoration: none;
     color: var(--primary-color);
     padding: 0.5rem 0.25rem;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, scale 0.1s ease;
 }
 
 .main-navigation-links a:hover,
@@ -732,7 +732,7 @@ html {
 /* --press-scale wird per JavaScript abhängig von der Button-Größe gesetzt */
 
 .button:active,
-.main-navigation-links .main-navigation-links-contact:active,
+.main-navigation-links a:active,
 .back-to-top:active,
 .nav-toggle:active,
 .dropdown-toggle:active,
@@ -742,7 +742,7 @@ html {
 
 @media (prefers-reduced-motion: reduce) {
     .button:active,
-    .main-navigation-links .main-navigation-links-contact:active,
+    .main-navigation-links a:active,
     .back-to-top:active,
     .nav-toggle:active,
     .dropdown-toggle:active,

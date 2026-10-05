@@ -106,7 +106,7 @@ if (backToTop) {
 /* ---------- Druck-Effekt: Skalierung abhängig von der Button-Größe ---------- */
 
 const pressables = document.querySelectorAll(
-    'button, .button, .main-navigation-links-contact'
+    'button, .button, .main-navigation-links a'
 );
 
 const PRESS_SHRINK_PX = 6;   // so viele Pixel schrumpft der Button (ungefähr)
