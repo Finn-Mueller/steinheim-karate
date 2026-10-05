@@ -285,17 +285,33 @@
 }
 
 .gallery-dialog-close {
+    position: relative;
     flex: 0 0 auto;
     width: 2.5rem;
     height: 2.5rem;
     border: 0;
-    border-radius: 50%;
-    background: var(--primary-color);
-    color: var(--quinary-color);
+    background: none;
     cursor: pointer;
-    font: inherit;
-    font-size: 1.7rem;
-    line-height: 1;
+}
+
+.gallery-dialog-close::before,
+.gallery-dialog-close::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1.75rem;
+    height: 3px;
+    border-radius: 2px;
+    background-color: var(--primary-color);
+    content: "";
+}
+
+.gallery-dialog-close::before {
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.gallery-dialog-close::after {
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
 
 .gallery-dialog-content {
