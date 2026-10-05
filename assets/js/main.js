@@ -57,8 +57,7 @@ window.addEventListener('resize', updateHeaderHeight);
 function updateNavigationFocus() {
     document.body.classList.toggle(
         'navigation-focused',
-        toggle.getAttribute('aria-expanded') === 'true' ||
-            document.querySelector('.dropdown.is-open') !== null
+        toggle.getAttribute('aria-expanded') === 'true'
     );
 }
 
