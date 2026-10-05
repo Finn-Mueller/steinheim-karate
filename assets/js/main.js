@@ -77,7 +77,54 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Beim Vergrößern des Fensters zurücksetzen
-window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
+// Beim Vergrößern des Fensters zurücksetzen (passend zum CSS-Breakpoint von 830px)
+window.matchMedia('(min-width: 831px)').addEventListener('change', (e) => {
     if (e.matches) setMenu(false);
 });
+
+
+/* ---------- Nach-oben-Button ---------- */
+
+const backToTop = document.querySelector('.back-to-top');
+
+if (backToTop) {
+    backToTop.hidden = false;
+
+    function updateBackToTop() {
+        backToTop.classList.toggle('is-visible', window.scrollY > 400);
+    }
+
+    updateBackToTop();
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0 });
+    });
+}
+
+
+/* ---------- Druck-Effekt: Skalierung abhängig von der Button-Größe ---------- */
+
+const pressables = document.querySelectorAll(
+    'button, .button, .main-navigation-links-contact'
+);
+
+const PRESS_SHRINK_PX = 6;   // so viele Pixel schrumpft der Button (ungefähr)
+const PRESS_MIN = 0.85;      // nie stärker als das
+const PRESS_MAX = 0.98;      // nie schwächer als das
+
+function updatePressScale(el) {
+    const { width, height } = el.getBoundingClientRect();
+    if (!width || !height) return;  // unsichtbar: CSS-Fallback (0.95) greift
+
+    // Mittlere Größe aus Breite und Höhe, damit breite Buttons nicht zu stark schrumpfen
+    const size = Math.sqrt(width * height);
+    const scale = Math.min(PRESS_MAX, Math.max(PRESS_MIN, 1 - PRESS_SHRINK_PX / size));
+    el.style.setProperty('--press-scale', scale.toFixed(3));
+}
+
+const pressObserver = new ResizeObserver((entries) => {
+    entries.forEach((entry) => updatePressScale(entry.target));
+});
+
+pressables.forEach((el) => pressObserver.observe(el));

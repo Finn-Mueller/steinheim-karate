@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Termine – Kempoka Ryu</title>
+    <title>Links &amp; Downloads – Kempoka Ryu</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-------------- Header ------------->
     <header class="site-header">
         <nav class="main-navigation">
             <a href="/" class="logo">
@@ -51,7 +50,7 @@
                     </button>
                     <ul class="dropdown" id="more-menu">
                         <li><a href="termine.html">Termine</a></li>
-                        <li><a href="links.html">Links</a></li>
+                        <li><a href="links.html">Links &amp; Downloads</a></li>
                     </ul>
                 </li>
 
@@ -60,27 +59,67 @@
         </nav>
     </header>
 
-    <!-------------- Main Content ------------->
+
     <main class="container">
-        <h1 class="page-title">Termine</h1>
+        <h1 class="page-title">Links &amp; Downloads</h1>
 
-        <ul class="events" id="events"></ul>
+        <h2 class="section-title">Dokumente</h2>
 
-        <noscript>
-            <p class="events-empty">Für die Terminübersicht wird JavaScript benötigt.</p>
-        </noscript>
+        <div class="downloads">
+            <article class="download-card">
+                <div class="download-info">
+                    <h3 class="download-title">Beitrittserklärung</h3>
+                    <p class="download-text">
+                        Zum Ausdrucken und Ausfüllen, wenn du bei uns Mitglied werden möchtest.
+                    </p>
+                    <p class="download-meta">PDF</p>
+                </div>
+                <a href="assets/docs/Beitrittserklaerung.pdf"
+                   class="button"
+                   download>Herunterladen</a>
+            </article>
 
-        <p class="events-empty" id="events-empty" hidden>
-            Aktuell sind keine Termine geplant. Schau bald wieder vorbei!
-        </p>
+            <article class="download-card">
+                <div class="download-info">
+                    <h3 class="download-title">Einverständniserklärung für Fotos</h3>
+                    <p class="download-text">
+                        Einwilligung zur Anfertigung und Veröffentlichung von Fotos und Videos
+                        bei Training und Turnieren.
+                    </p>
+                    <p class="download-meta">PDF</p>
+                </div>
+                <a href="assets/docs/Einverstaendniserklearung_Fotos_und_Videos.pdf"
+                   class="button"
+                   download>Herunterladen</a>
+            </article>
+        </div>
 
-        <aside class="schedule-note">
-            <p>Fragen zu einem Termin oder zur Anmeldung? Melde dich einfach bei uns.</p>
-            <a href="kontakt.html" class="button">Kontakt aufnehmen</a>
-        </aside>
+        <h2 class="section-title">Links</h2>
+
+        <ul class="link-list">
+            <li>
+                <a href="https://sakura-kai.de/" target="_blank" rel="noopener noreferrer">
+                    Karate in Düsseldorf | Okinawa Goju-Ryu | Sakura-Kai
+                </a>
+            </li>
+            <li>
+                <a href="https://sakura-kai.org/" target="_blank" rel="noopener noreferrer">
+                    Sakura-Kai | News
+                </a>
+            </li>
+            <li>
+                <a href="https://w3f62el7r.hier-im-netz.de/" target="_blank" rel="noopener noreferrer">
+                    Begegnungszentrum Kolping Steinheim
+                </a>
+            </li>
+        </ul>
     </main>
 
-    <!-------------- Footer ------------->
+
+    <button class="back-to-top" type="button" aria-label="Nach oben" hidden>
+        <span aria-hidden="true"></span>
+    </button>
+
     <footer class="site-footer">
         <div class="footer-inner">
             <nav class="footer-navigation" aria-label="Rechtliches">
@@ -92,8 +131,6 @@
         </div>
     </footer>
 
-    <script src="assets/data/events.js"></script>
-    <script src="assets/js/termine.js"></script>
     <script src="assets/js/main.js"></script>
 
 </body>
