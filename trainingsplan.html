@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <!-------------- Header ------------->
     <header class="site-header">
         <nav class="main-navigation">
             <a href="/" class="logo">
@@ -59,12 +60,47 @@
         </nav>
     </header>
 
-
+    <!-------------- Main Content ------------->
     <main class="container">
-        <p>Hier ist der Inhalt der Trainingsplan-Seite.</p>
+        <h1 class="page-title">Trainingsplan</h1>
+
+        <div class="schedule">
+            <section class="schedule-card" aria-labelledby="tag-di-fr">
+                <h2 id="tag-di-fr" class="schedule-day">Dienstag &amp; Freitag</h2>
+                <ul class="schedule-list">
+                    <li>
+                        <span class="schedule-time">18:00 – 19:00 Uhr</span>
+                        <span class="schedule-name">Anfänger</span>
+                    </li>
+                    <li>
+                        <span class="schedule-time">19:00 – 21:00 Uhr</span>
+                        <span class="schedule-name">Fortgeschrittene</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="schedule-card" aria-labelledby="tag-sa">
+                <h2 id="tag-sa" class="schedule-day">Samstag</h2>
+                <ul class="schedule-list">
+                    <li>
+                        <span class="schedule-time">13:00 – 14:00 Uhr</span>
+                        <span class="schedule-name">Waffentraining</span>
+                    </li>
+                    <li>
+                        <span class="schedule-time">14:00 – 15:30 Uhr</span>
+                        <span class="schedule-name">Kickboxing</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+
+        <aside class="schedule-note">
+            <p>Probetraining ist jederzeit möglich. Melde dich einfach vorher bei uns.</p>
+            <a href="kontakt.html" class="button">Kontakt aufnehmen</a>
+        </aside>
     </main>
 
-
+    <!-------------- Footer ------------->
     <footer class="site-footer">
         <div class="footer-inner">
             <nav class="footer-navigation" aria-label="Rechtliches">
