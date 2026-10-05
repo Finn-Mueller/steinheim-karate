@@ -843,7 +843,7 @@ html {
 
 .event-body {
     flex: 1;
-    max-width: 50%;
+    max-width: clamp(50%, calc(50% + 415px - 50vw), 100%);
     min-width: 0;
 }
 
@@ -897,8 +897,13 @@ html {
 }
 
 @media (max-width: 600px) {
-    .event-body {
-        max-width: none;
+    .events {
+        padding-left: 0;
+    }
+
+    .event-card::before,
+    .event-card::after {
+        display: none;
     }
 }
 
