@@ -18,7 +18,7 @@ const EVENTS = [
         von: "10:00", bis: "16:00",
         ort: "Gymnasium Sporthalle Steinheim",
         adresse: "Ostpreussenstr. 15, 32839 Steinheim",
-        text: "Offene Kempo-Meisterschaft für alle Stilrichtungen. Für alle Stilrichtungen und Verbände offen. Anmeldung über das Kontaktformular. Zuschauer sind herzlich willkommen."
+        text: "Offene Kempo-Meisterschaft, für alle Stilrichtungen und Verbände offen. Anmeldung über das Kontaktformular. Zuschauer sind herzlich willkommen."
     },
     {
         start: "2026-11-28",
