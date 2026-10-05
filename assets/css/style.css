@@ -1235,6 +1235,16 @@ html {
             visibility 0s linear var(--navigation-motion);
     }
 
+    .main-navigation-links::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background-color: var(--tertiary-color);
+    }
+
     .main-navigation-links.is-open {
         max-height: calc(100vh - 5rem);
         max-height: calc(100dvh - var(--header-height, 5rem));
