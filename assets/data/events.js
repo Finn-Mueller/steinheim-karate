@@ -25,7 +25,7 @@ const EVENTS = [
         typ: "Event",
         titel: "Weihnachtsfeier",
         von: "10:00", bis: "16:00",
-        text: "Interner Feier zum Jahresabschluss. Alle Mitglieder sind eingeladen. Bitte vorher anmelden."
+        text: "Interne Feier zum Jahresabschluss. Alle Mitglieder sind eingeladen. Bitte vorher anmelden."
     },
     {
         start: "2026-10-12", ende: "2027-10-25",
