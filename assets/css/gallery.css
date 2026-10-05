@@ -328,15 +328,43 @@
 
 @media (max-width: 700px) {
     .gallery-controls {
+        flex-direction: column;
         align-items: stretch;
+        gap: 0.85rem;
+        padding: 0.85rem;
     }
 
     .gallery-categories {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.45rem;
         width: 100%;
     }
 
+    .gallery-category-link {
+        justify-content: center;
+        min-height: 2.75rem;
+        padding: 0.55rem 0.45rem;
+        border-color: rgba(47, 62, 70, 0.16);
+        border-radius: 0.55rem;
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
     .gallery-year-filters {
-        justify-content: flex-start;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+        align-items: end;
+        gap: 0.5rem;
+    }
+
+    .gallery-year-field select {
+        width: 100%;
+        max-width: none;
+    }
+
+    .gallery-year-separator {
+        padding-bottom: 0.65rem;
     }
 }
 
