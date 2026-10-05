@@ -3,6 +3,19 @@ const toggle = document.querySelector('.nav-toggle');
 const menu = document.getElementById('main-menu');
 const dropdownItems = document.querySelectorAll('.has-dropdown');
 
+/* ---------- Social-Media-Links: URLs zentral hier pflegen ---------- */
+
+const socialLinks = {
+    instagram: 'https://www.instagram.com/kempokaryu/',
+    facebook: 'https://www.facebook.com/share/1C7FrLhcf1/',
+    youtube: 'https://www.youtube.com/@kempoka-ryusteinheim1689'
+};
+
+document.querySelectorAll('[data-social-link]').forEach((link) => {
+    const platform = link.dataset.socialLink;
+    link.href = socialLinks[platform];
+});
+
 /* ---------- Header-Höhe für die max-height des Menüs ---------- */
 
 function updateHeaderHeight() {
