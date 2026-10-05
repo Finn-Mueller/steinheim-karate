@@ -103,6 +103,11 @@ toggle.addEventListener('click', () => {
     setMenu(toggle.getAttribute('aria-expanded') !== 'true');
 });
 
+// Navigation beim Scrollen schließen
+window.addEventListener('scroll', () => {
+    setMenu(false);
+}, { passive: true });
+
 // Menü schließen bei Klick auf einen Link
 menu.addEventListener('click', (e) => {
     if (e.target.closest('a')) setMenu(false);
