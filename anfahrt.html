@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kempoka Ryu</title>
+    <title>Anfahrt – Kempoka Ryu Steinheim</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <!-------------- Header ------------->
     <header class="site-header">
         <nav class="main-navigation">
             <a href="/" class="logo">
@@ -27,11 +26,8 @@
             <ul class="main-navigation-links" id="main-menu">
                 <li><a href="trainingsplan.html">Trainingsplan</a></li>
                 <li><a href="trainer-innen.html">Trainer/-innen</a></li>
-
                 <li><a href="galerie.html">Galerie</a></li>
-
                 <li><a href="preise.html">Preise</a></li>
-
                 <li class="has-dropdown">
                     <button class="dropdown-toggle" type="button"
                             aria-expanded="false"
@@ -40,62 +36,58 @@
                     </button>
                     <ul class="dropdown" id="more-menu">
                         <li><a href="termine.html">Termine</a></li>
-                        <li><a href="anfahrt.html">Anfahrt</a></li>
+                        <li><a href="anfahrt.html" aria-current="page">Anfahrt</a></li>
                         <li><a href="links.html">Links &amp; Downloads</a></li>
                     </ul>
                 </li>
-
                 <li><a href="kontakt.html" class="main-navigation-links-contact">Kontakt</a></li>
             </ul>
         </nav>
     </header>
 
-    <!-------------- Main Content ------------->
     <main class="container">
-        <h1 class="page-title">Trainingsplan</h1>
-
-        <aside class="training-closures" id="training-closures" aria-labelledby="training-closures-title" hidden>
-            <h2 id="training-closures-title">Hinweis: Trainingsausfall</h2>
-            <ul class="training-closures-list"></ul>
-        </aside>
-
-        <div class="schedule">
-            <section class="schedule-card" aria-labelledby="tag-di-fr">
-                <h2 id="tag-di-fr" class="schedule-day">Dienstag &amp; Freitag</h2>
-                <ul class="schedule-list">
-                    <li>
-                        <span class="schedule-time">18:00 – 19:00 Uhr</span>
-                        <span class="schedule-name">Anfänger</span>
-                    </li>
-                    <li>
-                        <span class="schedule-time">19:00 – 21:00 Uhr</span>
-                        <span class="schedule-name">Fortgeschrittene</span>
-                    </li>
-                </ul>
+        <h1 class="page-title">Anfahrt</h1>
+        <div class="directions-locations">
+            <section class="directions-location" aria-labelledby="training-location-title">
+                <h2 class="section-title" id="training-location-title">Trainingsort</h2>
+                <p class="event-location">
+                    <a href="https://www.google.de/maps/place/Kempoka-Ryu+Steinheim/@51.8677124,9.0933017,19.79z/data=!4m6!3m5!1s0x47ba585cead6e98d:0x6233547719809325!8m2!3d51.8676515!4d9.0932415!16s%2Fg%2F1hc1qplx2?entry=ttu&amp;g_ep=EgoyMDI2MDkzMC4wIKXMDSoASAFQAw%3D%3D"
+                       target="_blank"
+                       rel="noopener noreferrer">Hinter der Mauer 4, 32839 Steinheim</a>
+                </p>
+                <iframe
+                    class="training-location-map"
+                    src="https://www.google.com/maps?output=embed&amp;q=Kempoka-Ryu+Steinheim&amp;ll=51.8676515%2C9.0932415&amp;z=16"
+                    title="Google Maps: Trainingsort Kempoka Ryu Steinheim, Hinter der Mauer 4"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
             </section>
 
-            <section class="schedule-card" aria-labelledby="tag-sa">
-                <h2 id="tag-sa" class="schedule-day">Samstag</h2>
-                <ul class="schedule-list">
-                    <li>
-                        <span class="schedule-time">13:00 – 14:00 Uhr</span>
-                        <span class="schedule-name">Waffentraining</span>
-                    </li>
-                    <li>
-                        <span class="schedule-time">14:00 – 15:30 Uhr</span>
-                        <span class="schedule-name">Kickboxing</span>
-                    </li>
-                </ul>
+            <section class="directions-location" aria-labelledby="tournament-location-title">
+                <h2 class="section-title" id="tournament-location-title">Turnierhalle</h2>
+                <p class="event-location">
+                    <a href="https://www.google.com/maps/search/?api=1&amp;query=Gymnasium+Sporthalle%2C+Ostpreussenstr.+15%2C+32839+Steinheim"
+                       target="_blank"
+                       rel="noopener noreferrer">Gymnasium Sporthalle, Ostpreussenstr. 15, 32839 Steinheim</a>
+                </p>
+                <iframe
+                    class="training-location-map"
+                    src="https://www.google.com/maps?output=embed&amp;q=Gymnasium+Sporthalle%2C+Ostpreussenstr.+15%2C+32839+Steinheim"
+                    title="Google Maps: Gymnasium Sporthalle, Ostpreussenstr. 15, 32839 Steinheim"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
             </section>
         </div>
-
     </main>
 
     <button class="back-to-top" type="button" aria-label="Nach oben" hidden>
         <span aria-hidden="true"></span>
     </button>
 
-    <!-------------- Footer ------------->
     <footer class="site-footer">
         <div class="footer-inner">
             <nav class="footer-navigation" aria-label="Rechtliches">
@@ -136,8 +128,5 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
-    <script src="assets/data/events.js"></script>
-    <script src="assets/js/training-closures.js"></script>
-
 </body>
 </html>
