@@ -438,7 +438,10 @@ button {
 }
 
 .training-location {
+    margin-top: 2rem;
     margin-bottom: 2rem;
+    padding-top: 1px;
+    border-top: 1px solid var(--quaternary-color);
 }
 
 .training-location-map {
