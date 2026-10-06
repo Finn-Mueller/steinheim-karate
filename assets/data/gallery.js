@@ -1,11 +1,12 @@
 // Neues Album: Datum (JJJJ-MM-TT), Titel und Kategorie eintragen sowie
-// cover und photos mit Pfaden zu den Bildern im Ordner ergänzen.
+// folder ist der Objekt-Key-Ordner im Bildspeicher; cover und photos sind
+// Dateinamen innerhalb dieses Ordners (z. B. cover.webp und 01.webp).
 window.GALLERY_ALBUMS = [
     {
         date: '2026-03-01',
         category: 'turniere',
         title: 'Test-Turnier',
-        folder: 'assets/images/gallery/turniere/2026-03-01-turnier/',
+        folder: 'gallery/turniere/2026-03-01-turnier/',
         cover: '',
         photos: []
     },
@@ -13,7 +14,7 @@ window.GALLERY_ALBUMS = [
         date: '2026-03-01',
         category: 'pruefungen',
         title: 'Test-Prüfung',
-        folder: 'assets/images/gallery/pruefungen/2026-03-01-pruefung/',
+        folder: 'gallery/pruefungen/2026-03-01-pruefung/',
         cover: '',
         photos: []
     },
@@ -21,7 +22,7 @@ window.GALLERY_ALBUMS = [
         date: '2025-03-01',
         category: 'lehrgaenge',
         title: 'Test-Lehrgang',
-        folder: 'assets/images/gallery/lehrgaenge/2026-03-01-lehrgang/',
+        folder: 'gallery/lehrgaenge/2026-03-01-lehrgang/',
         cover: '',
         photos: []
     },
@@ -29,7 +30,7 @@ window.GALLERY_ALBUMS = [
         date: '2021-03-01',
         category: 'trainingslager',
         title: 'Test-Trainingslager',
-        folder: 'assets/images/gallery/trainingslager/2026-03-01-trainingslager/',
+        folder: 'gallery/trainingslager/2026-03-01-trainingslager/',
         cover: '',
         photos: []
     },
@@ -37,7 +38,7 @@ window.GALLERY_ALBUMS = [
         date: '2026-03-01',
         category: 'sonstiges',
         title: 'Test-Veranstaltung',
-        folder: 'assets/images/gallery/events/26-03-01-event/',
+        folder: 'gallery/events/26-03-01-event/',
         cover: '',
         photos: []
     }

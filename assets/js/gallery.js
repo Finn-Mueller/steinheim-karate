@@ -21,6 +21,10 @@ const galleryDialogMeta = document.getElementById('gallery-dialog-meta');
 const galleryDialogContent = document.getElementById('gallery-dialog-content');
 const galleryDialogClose = galleryDialog.querySelector('.gallery-dialog-close');
 
+if (!window.imageStorage) {
+    throw new Error('Der Bildspeicher konnte nicht geladen werden.');
+}
+
 const categoryIcons = {
     turniere: '<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4Z"></path><path d="M7 6H4v2a4 4 0 0 0 4 4m9-6h3v2a4 4 0 0 1-4 4"></path>',
     pruefungen: '<path d="m12 3 2.2 4.5 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7L12 3Z"></path><path d="m9.5 18-1 3 3.5-1.8 3.5 1.8-1-3"></path>',
@@ -92,10 +96,10 @@ function makeCard(album) {
     image.setAttribute('aria-hidden', 'true');
     image.append(makePlaceholder(album.category));
 
-    const coverPath = album.cover || album.photos[0] || '';
-    if (coverPath) {
+    const coverFile = album.cover || album.photos[0] || '';
+    if (coverFile) {
         const cover = document.createElement('img');
-        cover.src = coverPath;
+        cover.src = window.imageStorage.url(`${album.folder}${coverFile}`);
         cover.alt = '';
         cover.loading = 'lazy';
         cover.addEventListener('error', () => cover.remove());
@@ -162,14 +166,15 @@ function openAlbum(album) {
         photoGrid.className = 'gallery-photo-grid';
 
         album.photos.forEach((photoPath, index) => {
+            const imageUrl = window.imageStorage.url(`${album.folder}${photoPath}`);
             const link = document.createElement('a');
-            link.href = photoPath;
+            link.href = imageUrl;
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
             link.setAttribute('aria-label', `Foto ${index + 1} in Originalgröße öffnen`);
 
             const photo = document.createElement('img');
-            photo.src = photoPath;
+            photo.src = imageUrl;
             photo.alt = `${album.title} – Foto ${index + 1}`;
             photo.loading = 'lazy';
             photo.addEventListener('error', () => link.remove());
