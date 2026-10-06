@@ -606,6 +606,10 @@ button {
     line-height: 1.4;
 }
 
+.event-location.schedule-location-link {
+    margin-top: 3rem;
+}
+
 .training-closures {
     margin: 0 0 1.5rem;
     padding: 1.25rem;
