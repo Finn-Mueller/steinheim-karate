@@ -437,6 +437,71 @@ button {
     margin: 2rem 0 1.5rem;
 }
 
+.home-hero {
+    margin: 2rem 0 0;
+    overflow: hidden;
+    border-radius: 0.6rem;
+    background-color: var(--primary-color);
+}
+
+.home-hero-image-link {
+    display: block;
+}
+
+.home-hero-image-link:focus-visible {
+    outline: 3px solid var(--tertiary-color);
+    outline-offset: 3px;
+}
+
+.home-hero-image {
+    display: block;
+    width: 100%;
+    height: clamp(16rem, 45vw, 34rem);
+    object-fit: cover;
+    object-position: center;
+}
+
+.home-intro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    padding: 1rem 0;
+}
+
+.home-intro h1 {
+    margin: 0 0 0.5rem;
+    color: var(--primary-color);
+}
+
+.home-intro p {
+    margin: 0;
+}
+
+.home-intro-link {
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.home-intro-link::after {
+    content: "\00a0↗";
+    color: var(--tertiary-color);
+}
+
+.home-intro-link:hover,
+.home-intro-link:focus-visible {
+    color: var(--tertiary-color);
+}
+
+.home-intro-link:focus-visible {
+    outline: 2px solid var(--tertiary-color);
+    outline-offset: 3px;
+}
+
 .training-location {
     margin-top: 2rem;
     margin-bottom: 2rem;
