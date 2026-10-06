@@ -3,12 +3,15 @@
 // Dateinamen innerhalb dieses Ordners (z. B. cover.webp und 01.webp).
 window.GALLERY_ALBUMS = [
     {
-        date: '2026-03-01',
+        date: '2025-05-17',
         category: 'turniere',
         title: 'Test-Turnier',
-        folder: 'gallery/turniere/2026-03-01-turnier/',
-        cover: '',
-        photos: []
+        folder: 'gallery/turniere/2025-05-17/',
+        cover: 'DSC_2998-1920w.webp',
+        photos: ['DSC_2998-1920w.webp',
+                'DSC_3133-1920w.webp',
+                'DSC_3137-1920w.webp',
+                'DSC_3159-16f962ec-1920w.webp']
     },
     {
         date: '2026-03-01',

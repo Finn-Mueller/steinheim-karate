@@ -20,6 +20,7 @@ const galleryDialogTitle = document.getElementById('gallery-dialog-title');
 const galleryDialogMeta = document.getElementById('gallery-dialog-meta');
 const galleryDialogContent = document.getElementById('gallery-dialog-content');
 const galleryDialogClose = galleryDialog.querySelector('.gallery-dialog-close');
+let galleryImageObserver = null;
 
 if (!window.imageStorage) {
     throw new Error('Der Bildspeicher konnte nicht geladen werden.');
@@ -99,7 +100,10 @@ function makeCard(album) {
     const coverFile = album.cover || album.photos[0] || '';
     if (coverFile) {
         const cover = document.createElement('img');
-        cover.src = window.imageStorage.url(`${album.folder}${coverFile}`);
+        cover.src = window.imageStorage.url(`${album.folder}${coverFile}`, {
+            width: 640,
+            quality: 75
+        });
         cover.alt = '';
         cover.loading = 'lazy';
         cover.addEventListener('error', () => cover.remove());
@@ -152,6 +156,8 @@ function renderGallery() {
 }
 
 function openAlbum(album) {
+    if (galleryImageObserver) galleryImageObserver.disconnect();
+    galleryImageObserver = null;
     galleryDialogTitle.textContent = album.title;
     galleryDialogMeta.textContent = `${galleryCategories[album.category] || 'Sonstiges'} · ${formatAlbumDate(album)}`;
     galleryDialogContent.replaceChildren();
@@ -164,22 +170,41 @@ function openAlbum(album) {
     } else {
         const photoGrid = document.createElement('div');
         photoGrid.className = 'gallery-photo-grid';
+        galleryImageObserver = 'IntersectionObserver' in window
+            ? new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+
+                    entry.target.src = entry.target.dataset.src;
+                    observer.unobserve(entry.target);
+                });
+            }, {
+                root: galleryDialogContent,
+                rootMargin: '300px 0px'
+            })
+            : null;
 
         album.photos.forEach((photoPath, index) => {
-            const imageUrl = window.imageStorage.url(`${album.folder}${photoPath}`);
+            const originalUrl = window.imageStorage.url(`${album.folder}${photoPath}`);
             const link = document.createElement('a');
-            link.href = imageUrl;
+            link.href = originalUrl;
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
             link.setAttribute('aria-label', `Foto ${index + 1} in Originalgröße öffnen`);
 
             const photo = document.createElement('img');
-            photo.src = imageUrl;
+            photo.dataset.src = window.imageStorage.url(`${album.folder}${photoPath}`, {
+                width: 960,
+                quality: 80
+            });
             photo.alt = `${album.title} – Foto ${index + 1}`;
             photo.loading = 'lazy';
+            photo.decoding = 'async';
             photo.addEventListener('error', () => link.remove());
             link.append(photo);
             photoGrid.append(link);
+            if (galleryImageObserver) galleryImageObserver.observe(photo);
+            else photo.src = photo.dataset.src;
         });
 
         galleryDialogContent.append(photoGrid);
@@ -260,6 +285,10 @@ galleryYearTo.addEventListener('change', () => {
     renderGallery();
 });
 galleryDialogClose.addEventListener('click', () => galleryDialog.close());
+galleryDialog.addEventListener('close', () => {
+    if (galleryImageObserver) galleryImageObserver.disconnect();
+    galleryImageObserver = null;
+});
 galleryDialog.addEventListener('click', (event) => {
     if (event.target === galleryDialog) galleryDialog.close();
 });

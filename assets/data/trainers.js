@@ -1,13 +1,13 @@
 /*
   Felder:
     name   Name der Trainerin/des Trainers
-    photo  Bild-Objekt-Key, z. B. trainer-innen/name.webp
+    photo  Bild-Objekt-Key im R2-Bucket, z. B. coaches/name.webp
     grades Array der Graduierungen mit Gürtelfarbe und Anzeigetext
 */
 const TRAINERS = [
     {
         name: "Heinz-Josef Köring",
-        photo: "trainer-innen/Heinz-Josef Köring.webp",
+        photo: "coaches/Heinz-Josef Köring.webp",
         grades: [
             { belt: "black", label: "7. Dan Kempo" },
             { belt: "black", label: "1. Dan Gojo-Ryu" }
@@ -15,49 +15,49 @@ const TRAINERS = [
     },
     {
         name: "Sergej Benz",
-        photo: "trainer-innen/Sergej Benz.webp",
+        photo: "coaches/Sergej Benz.webp",
         grades: [
             { belt: "black", label: "3. Dan Kempo" }
         ]
     },
     {
         name: "Justin Müller",
-        photo: "trainer-innen/Justin Müller.webp",
+        photo: "coaches/Justin Müller.webp",
         grades: [
             { belt: "black", label: "3. Dan Kempo" }
         ]
     },
     {
         name: "Rodion Ragosin",
-        photo: "trainer-innen/Rodion Ragosin.webp",
+        photo: "coaches/Rodion Ragosin.webp",
         grades: [
             { belt: "black", label: "2. Dan Kempo" }
         ]
     },
     {
         name: "Finn Müller",
-        photo: "trainer-innen/Finn Müller.webp",
+        photo: "coaches/Finn Müller.webp",
         grades: [
             { belt: "black", label: "2. Dan Kempo" }
         ]
     },
     {
         name: "Leon Dick",
-        photo: "trainer-innen/Leon Dick.webp",
+        photo: "coaches/Leon Dick.webp",
         grades: [
             { belt: "black", label: "1. Dan Kempo" }
         ]
     },
     {
         name: "Dennis Benz",
-        photo: "trainer-innen/Dennis Benz.webp",
+        photo: "coaches/Dennis Benz.webp",
         grades: [
             { belt: "black", label: "1. Dan Kempo" }
         ]
     },
     {
         name: "Ester Thiemann",
-        photo: "trainer-innen/Ester Thiemann.webp",
+        photo: "coaches/Ester Thiemann.webp",
         grades: [
             { belt: "brown", label: "1. Kyu (Braungurt) Kempo" }
         ]
