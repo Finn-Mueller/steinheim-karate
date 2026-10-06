@@ -323,6 +323,12 @@
     gap: 1rem;
 }
 
+@media (min-width: 1000px) {
+    .gallery-photo-grid {
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    }
+}
+
 .gallery-photo-grid a {
     display: block;
     overflow: hidden;
