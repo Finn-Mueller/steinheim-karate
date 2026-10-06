@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kempoka Ryu</title>
+    <title>Galerie | Kempoka Ryu Steinheim</title>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/gallery.css">
 </head>
 <body>
     <header class="site-header">
@@ -27,18 +28,7 @@
                 <li><a href="trainingsplan.html">Trainingsplan</a></li>
                 <li><a href="trainer-innen.html">Trainer/-innen</a></li>
 
-                <li class="has-dropdown dropdown-left">
-                    <button class="dropdown-toggle" type="button"
-                            aria-expanded="false"
-                            aria-controls="gallery-menu">
-                        Galerie
-                    </button>
-                    <ul class="dropdown" id="gallery-menu">
-                        <li><a href="galerie.html">Alle Bilder</a></li>
-                        <li><a href="galerie-turniere.html">Turniere</a></li>
-                        <li><a href="galerie-sonstiges.html">Sonstiges</a></li>
-                    </ul>
-                </li>
+                <li><a href="galerie.html">Galerie</a></li>
 
                 <li><a href="preise.html">Preise</a></li>
 
@@ -60,8 +50,47 @@
     </header>
 
 
-    <main class="container">
-        <p>Hier ist der Inhalt der Galerie-Seite.</p>
+    <main class="container gallery-page">
+        <h1 class="page-title">Unsere Galerie</h1>
+
+        <section class="gallery-controls" aria-label="Galerie filtern">
+            <nav class="gallery-categories" aria-label="Veranstaltungskategorie">
+                <a class="gallery-category-link" href="galerie.html" data-category-filter="">Alle</a>
+                <a class="gallery-category-link" href="galerie.html?kategorie=turniere" data-category-filter="turniere">Turniere</a>
+                <a class="gallery-category-link" href="galerie.html?kategorie=pruefungen" data-category-filter="pruefungen">Prüfungen</a>
+                <a class="gallery-category-link" href="galerie.html?kategorie=lehrgaenge" data-category-filter="lehrgaenge">Lehrgänge</a>
+                <a class="gallery-category-link" href="galerie.html?kategorie=trainingslager" data-category-filter="trainingslager">Trainingslager</a>
+                <a class="gallery-category-link" href="galerie.html?kategorie=sonstiges" data-category-filter="sonstiges">Sonstiges</a>
+            </nav>
+
+            <div class="gallery-year-filters">
+                <div class="gallery-year-field">
+                    <label for="gallery-year-from">Von Jahr</label>
+                    <select id="gallery-year-from" name="von"></select>
+                </div>
+                <span class="gallery-year-separator" aria-hidden="true">bis</span>
+                <div class="gallery-year-field">
+                    <label for="gallery-year-to">Bis Jahr</label>
+                    <select id="gallery-year-to" name="bis"></select>
+                </div>
+            </div>
+        </section>
+
+        <p class="gallery-result-count" id="gallery-result-count" aria-live="polite"></p>
+        <section class="gallery-grid" id="gallery-grid" aria-label="Veranstaltungen"></section>
+
+        <p class="gallery-empty" id="gallery-empty" hidden>Für diese Auswahl gibt es keine Veranstaltungen.</p>
+
+        <dialog class="gallery-dialog" id="gallery-dialog" aria-labelledby="gallery-dialog-title">
+            <div class="gallery-dialog-header">
+                <div>
+                    <p class="gallery-dialog-meta" id="gallery-dialog-meta"></p>
+                    <h2 id="gallery-dialog-title"></h2>
+                </div>
+                <button class="gallery-dialog-close" type="button" aria-label="Album schließen"></button>
+            </div>
+            <div class="gallery-dialog-content" id="gallery-dialog-content"></div>
+        </dialog>
     </main>
 
     <button class="back-to-top" type="button" aria-label="Nach oben" hidden>
@@ -108,6 +137,9 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/image-storage.js"></script>
+    <script src="assets/data/gallery.js"></script>
+    <script src="assets/js/gallery.js"></script>
 
 </body>
 </html>

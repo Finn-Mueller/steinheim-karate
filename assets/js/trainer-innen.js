@@ -4,6 +4,9 @@
     if (typeof TRAINERS === 'undefined') {
         throw new Error('Die Trainerdaten konnten nicht geladen werden.');
     }
+    if (!window.imageStorage) {
+        throw new Error('Der Bildspeicher konnte nicht geladen werden.');
+    }
 
     function createCard(trainer) {
         const card = document.createElement('article');
@@ -11,7 +14,7 @@
 
         const photo = document.createElement('img');
         photo.className = 'trainer-photo';
-        photo.src = `assets/images/trainer-innen/${trainer.photo}`;
+        photo.src = window.imageStorage.url(trainer.photo);
         photo.alt = trainer.name;
         photo.loading = 'lazy';
 
