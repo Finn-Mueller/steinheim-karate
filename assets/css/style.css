@@ -421,6 +421,18 @@ button {
     margin: 2rem 0 1.5rem;
 }
 
+.training-location {
+    margin-bottom: 2rem;
+}
+
+.training-location-map {
+    display: block;
+    width: 100%;
+    height: clamp(22rem, 50vw, 34rem);
+    border: 0;
+    border-radius: 0.6rem;
+}
+
 .schedule {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
