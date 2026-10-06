@@ -558,6 +558,14 @@ button {
     border-radius: 0.6rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (hover: hover) {
+    .trainer-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
 }
 
 .trainer-photo {
@@ -567,6 +575,16 @@ button {
     object-fit: cover;        /* Bild wird zugeschnitten statt verzerrt */
     object-position: center top;  /* Gesichter bleiben sichtbar */
     background-color: var(--quaternary-color);
+}
+
+.trainer-photo-link {
+    display: block;
+    cursor: pointer;
+}
+
+.trainer-photo-link:focus-visible {
+    outline: 2px solid var(--tertiary-color);
+    outline-offset: -2px;
 }
 
 .trainer-info {
@@ -1394,7 +1412,12 @@ html {
 @media (prefers-reduced-motion: reduce) {
     .dropdown,
     .main-navigation-links,
-    body > :not(.site-header) {
+    body > :not(.site-header),
+    .trainer-card {
         transition: none;
+    }
+
+    .trainer-card:hover {
+        transform: none;
     }
 }

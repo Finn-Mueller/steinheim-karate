@@ -12,11 +12,19 @@
         const card = document.createElement('article');
         card.className = 'trainer-card';
 
+        const photoLink = document.createElement('a');
+        photoLink.className = 'trainer-photo-link';
+        photoLink.href = window.imageStorage.url(trainer.photo);
+        photoLink.target = '_blank';
+        photoLink.rel = 'noopener noreferrer';
+        photoLink.setAttribute('aria-label', `${trainer.name} – Foto in Originalgröße öffnen`);
+
         const photo = document.createElement('img');
         photo.className = 'trainer-photo';
-        photo.src = window.imageStorage.url(trainer.photo);
+        photo.src = photoLink.href;
         photo.alt = trainer.name;
         photo.loading = 'lazy';
+        photoLink.append(photo);
 
         const info = document.createElement('div');
         info.className = 'trainer-info';
@@ -38,7 +46,7 @@
             info.append(belt);
         });
 
-        card.append(photo, info);
+        card.append(photoLink, info);
         return card;
     }
 
