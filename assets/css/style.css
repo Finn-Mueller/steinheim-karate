@@ -395,6 +395,22 @@ body > :not(.site-header) {
     color: var(--tertiary-color);
 }
 
+.footer-social-links a[data-social-link="instagram"] {
+    color: #e4405f;
+}
+
+.footer-social-links a[data-social-link="facebook"] {
+    color: #1877f2;
+}
+
+.footer-social-links a[data-social-link="youtube"] {
+    color: #ff0000;
+}
+
+.footer-social-links a[data-social-link="youtube"] path {
+    fill: #ffffff;
+}
+
 .footer-social-links a:focus-visible {
     outline: 2px solid var(--tertiary-color);
     outline-offset: 2px;
