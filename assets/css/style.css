@@ -532,6 +532,10 @@ button {
     height: clamp(22rem, 35vw, 30rem);
 }
 
+.directions-location .event-location {
+    min-height: 2.6em;
+}
+
 @media (max-width: 700px) {
     .directions-locations {
         grid-template-columns: 1fr;
