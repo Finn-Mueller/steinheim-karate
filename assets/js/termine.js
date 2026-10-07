@@ -49,7 +49,7 @@
         const start = parseLocalDate(ev.start);
 
         const card = el('li', 'event-card');
-        if (ev.ausfall) card.classList.add('event-card-frei');
+        if (ev.ausfall) card.classList.add('event-card-frei', 'event-card-closure');
         if (isNext) card.classList.add('is-next');
 
         const time = el('time', 'event-date');
@@ -60,12 +60,12 @@
         );
 
         const body = el('div', 'event-body');
-        body.append(el('span', 'event-type', ev.typ));
+        body.append(el('span', 'event-type', ev.ausfall ? 'Kein Training' : ev.typ));
         if (isNext) body.append(el('span', 'event-next-label', 'Als Nächstes'));
         body.append(el('h2', 'event-title', ev.titel));
         body.append(el('p', 'event-meta', formatMeta(ev)));
 
-        if (ev.ort) {
+        if (!ev.ausfall && ev.ort) {
             const loc = el('p', 'event-location');
             const link = el('a', null, ev.ort);
             link.href = mapsUrl(ev);
@@ -76,7 +76,7 @@
             body.append(loc);
         }
 
-        if (ev.text) body.append(el('p', 'event-text', ev.text));
+        if (!ev.ausfall && ev.text) body.append(el('p', 'event-text', ev.text));
 
         card.append(time, body);
         return card;
@@ -95,7 +95,7 @@
         );
 
         const body = el('div', 'event-body');
-        body.append(el('span', 'event-type', closure.typ));
+        body.append(el('span', 'event-type', 'Kein Training'));
         if (isNext) body.append(el('span', 'event-next-label', 'Als Nächstes'));
         body.append(
             el('h2', 'event-title', closure.titel),

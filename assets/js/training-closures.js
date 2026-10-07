@@ -24,7 +24,7 @@
         month: 'long',
         year: 'numeric'
     });
-    const formatDay = new Intl.DateTimeFormat('de-DE', { day: 'numeric' });
+    const formatMonth = new Intl.DateTimeFormat('de-DE', { month: 'short' });
     const trainingWeekdays = window.getTrainingWeekdays();
 
     let closures = EVENTS.filter((event) => event.ausfall);
@@ -57,31 +57,41 @@
         const start = parseLocalDate(event.start);
         const end = parseLocalDate(event.ende || event.start);
         const item = document.createElement('li');
-        const title = document.createElement('strong');
-        const period = document.createElement('span');
-        period.className = 'training-closure-period';
+        item.className = 'event-card event-card-frei event-card-closure';
 
-        title.textContent = `${event.titel}: `;
-        const startDate = document.createElement('span');
+        const date = document.createElement('time');
+        date.className = 'event-date';
+        date.dateTime = event.start;
+        const dateDay = document.createElement('span');
+        dateDay.className = 'event-date-day';
+        dateDay.textContent = String(start.getDate());
+        const dateMonth = document.createElement('span');
+        dateMonth.className = 'event-date-month';
+        dateMonth.textContent = formatMonth.format(start).replace('.', '');
+        date.append(dateDay, dateMonth);
+
+        const body = document.createElement('div');
+        body.className = 'event-body';
+        const type = document.createElement('span');
+        type.className = 'event-type';
+        type.textContent = 'Kein Training';
+        const title = document.createElement('h3');
+        title.className = 'event-title';
+        title.textContent = event.titel;
+        const period = document.createElement('p');
+        period.className = 'event-meta';
         const sameMonth = start.getMonth() === end.getMonth()
             && start.getFullYear() === end.getFullYear();
-        startDate.textContent = start.getTime() !== end.getTime() && sameMonth
-            ? ` ${formatDay.format(start)}.`
-            : ` ${formatDate.format(start)}`;
-        period.append(startDate);
-
-        if (start.getTime() !== end.getTime()) {
-            const separator = document.createElement('span');
-            separator.className = 'training-closure-range-separator';
-            separator.textContent = '\u00a0–';
-
-            const endDate = document.createElement('span');
-            endDate.className = 'training-closure-end-date';
-            endDate.textContent = ` ${formatDate.format(end)}`;
-            period.append(separator, endDate);
+        if (start.getTime() === end.getTime()) {
+            period.textContent = formatDate.format(start);
+        } else if (sameMonth) {
+            period.textContent = `${start.getDate()}. – ${formatDate.format(end)}`;
+        } else {
+            period.textContent = `${formatDate.format(start)} – ${formatDate.format(end)}`;
         }
 
-        item.append(title, period);
+        body.append(type, title, period);
+        item.append(date, body);
         list.append(item);
     });
 

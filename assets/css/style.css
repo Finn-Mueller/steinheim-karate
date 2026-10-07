@@ -612,47 +612,29 @@ button {
 
 .training-closures {
     margin: 0 0 1.5rem;
-    padding: 1.25rem;
-    border-left: 4px solid var(--warning-color);
-    border-radius: 0.6rem;
-    background-color: var(--senary-color);
 }
 
 .training-closures[hidden] {
     display: none;
 }
 
-.training-closures h2 {
-    margin: 0 0 0.75rem;
-    color: var(--warning-color);
-    font-size: 1.2rem;
+.training-closures .training-closures-list {
+    padding: 0;
+    margin-bottom: 0;
 }
 
-.training-closures-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin: 0;
-    padding-left: 1.25rem;
-}
-
-.training-closures-list li {
-    padding-left: 0.15rem;
-    line-height: 1.4;
-}
-
-.training-closures-list strong {
-    color: var(--primary-color);
+.training-closures .training-closures-list .event-card::before,
+.training-closures .training-closures-list .event-card::after {
+    display: none;
 }
 
 .training-closures-error {
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--warning-color);
+    border-radius: 0.6rem;
+    background-color: var(--senary-color);
     color: var(--warning-color);
     font-weight: 600;
-}
-
-.training-closure-period {
-    display: inline-block;
-    white-space: nowrap;
 }
 
 
@@ -1316,6 +1298,10 @@ html {
     padding: 0.75rem 1rem;
     border-left-color: var(--warning-color);
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.event-card-closure.event-card-frei {
+    border-left-color: var(--warning-color);
 }
 
 .event-card-closure::before {
