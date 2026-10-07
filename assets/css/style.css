@@ -1305,13 +1305,8 @@ html {
 }
 
 .event-card-closure::before {
-    top: 0.9rem;
+    top: 1.25rem;
     border-color: var(--warning-color);
-}
-
-.event-card-closure:not(:last-child)::after {
-    top: 1.3rem;
-    bottom: -1.7rem;
 }
 
 .event-card-closure.is-next {
