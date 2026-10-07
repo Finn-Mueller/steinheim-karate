@@ -991,6 +991,31 @@ button {
     }
 }
 
+/* ---------- Rechtliches ---------- */
+
+.legal-page a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.legal-page a[target="_blank"]::after {
+    content: "\00a0↗";
+    color: var(--tertiary-color);
+}
+
+@media (hover: hover) {
+    .legal-page a:hover {
+        color: var(--tertiary-color);
+    }
+}
+
+.legal-page a:focus-visible {
+    outline: 2px solid var(--tertiary-color);
+    outline-offset: 3px;
+}
+
 
 /* ---------- Nach-oben-Button ---------- */
 
