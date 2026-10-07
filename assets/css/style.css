@@ -1016,6 +1016,12 @@ button {
     outline-offset: 3px;
 }
 
+.legal-page .privacy-updated {
+    margin-top: 2rem;
+    color: var(--tertiary-color);
+    font-size: 0.95rem;
+}
+
 
 /* ---------- Nach-oben-Button ---------- */
 
