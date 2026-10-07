@@ -82,6 +82,42 @@
         return card;
     }
 
+    function createClosureCard(closure, isNext) {
+        const start = parseLocalDate(closure.start);
+        const card = el('li', 'event-card event-card-frei event-card-closure');
+        if (isNext) card.classList.add('is-next');
+
+        const time = el('time', 'event-date');
+        time.dateTime = closure.start;
+        time.append(
+            el('span', 'event-date-day', String(start.getDate())),
+            el('span', 'event-date-month', fmtMonth.format(start).replace('.', ''))
+        );
+
+        const body = el('div', 'event-body');
+        body.append(el('span', 'event-type', closure.typ));
+        if (isNext) body.append(el('span', 'event-next-label', 'Als Nächstes'));
+        body.append(
+            el('h2', 'event-title', closure.titel),
+            el('p', 'event-meta', formatDateText(closure))
+        );
+
+        card.append(time, body);
+        return card;
+    }
+
+    function includesTrainingDay(closure) {
+        const date = parseLocalDate(closure.start);
+        const end = parseLocalDate(closure.ende || closure.start);
+        const trainingWeekdays = window.getTrainingWeekdays();
+
+        while (date <= end) {
+            if (trainingWeekdays.has(date.getDay())) return true;
+            date.setDate(date.getDate() + 1);
+        }
+        return false;
+    }
+
     /* ---------- Vergangenes ausblenden, nächsten hervorheben ---------- */
 
     const today = new Date();
@@ -93,7 +129,36 @@
 
     const nextEvent = upcoming.find((ev) => !ev.ausfall);
 
-    upcoming.forEach((ev) => eventList.append(createCard(ev, ev === nextEvent)));
+    let upcomingClosures = [];
+    const closureError = document.getElementById('closures-error');
+    if (typeof HOLIDAY_CLOSURES === 'undefined') {
+        console.error('Die automatisch aktualisierten Ferien- und Feiertagsdaten konnten nicht geladen werden.');
+        if (closureError) closureError.hidden = false;
+    } else {
+        upcomingClosures = HOLIDAY_CLOSURES
+            .filter((closure) => parseLocalDate(closure.ende || closure.start) >= today)
+            .filter(includesTrainingDay)
+            .sort((a, b) => a.start.localeCompare(b.start));
+    }
 
-    document.getElementById('events-empty').hidden = upcoming.length > 0;
+    const timelineEnd = upcoming.reduce((latest, ev) => {
+        const eventEnd = parseLocalDate(ev.ende || ev.start);
+        return eventEnd > latest ? eventEnd : latest;
+    }, today);
+    const hasUpcomingEvents = upcoming.length > 0;
+    const visibleClosures = hasUpcomingEvents
+        ? upcomingClosures.filter((closure) => parseLocalDate(closure.start) <= timelineEnd)
+        : upcomingClosures.slice(0, 1);
+    const timelineItems = [
+        ...upcoming.map((event) => ({ date: event.start, event })),
+        ...visibleClosures.map((closure) => ({ date: closure.start, closure }))
+    ].sort((a, b) => a.date.localeCompare(b.date));
+
+    timelineItems.forEach(({ event, closure }) => {
+        eventList.append(event
+            ? createCard(event, event === nextEvent)
+            : createClosureCard(closure, !hasUpcomingEvents));
+    });
+
+    document.getElementById('events-empty').hidden = timelineItems.length > 0;
 })();

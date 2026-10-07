@@ -645,6 +645,11 @@ button {
     color: var(--primary-color);
 }
 
+.training-closures-error {
+    color: var(--warning-color);
+    font-weight: 600;
+}
+
 .training-closure-period {
     display: inline-block;
     white-space: nowrap;
@@ -1296,6 +1301,78 @@ html {
     line-height: 1.4;
 }
 
+.event-data-source {
+    margin: -1rem 0 2rem 2.5rem;
+    color: var(--tertiary-color);
+    font-size: 0.8rem;
+}
+
+.event-data-source a {
+    color: inherit;
+}
+
+.event-card-closure {
+    gap: 0.85rem;
+    padding: 0.75rem 1rem;
+    border-left-color: var(--warning-color);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.event-card-closure::before {
+    top: 0.9rem;
+    border-color: var(--warning-color);
+}
+
+.event-card-closure:not(:last-child)::after {
+    top: 1.3rem;
+    bottom: -1.7rem;
+}
+
+.event-card-closure.is-next {
+    border-left-color: var(--warning-color);
+}
+
+.event-card-closure.is-next::before {
+    background-color: var(--warning-color);
+}
+
+.event-card-closure .event-date {
+    min-width: 3.25rem;
+    padding: 0.35rem 0.55rem;
+    background-color: var(--warning-color);
+}
+
+.event-card-closure .event-date-day {
+    font-size: 1.4rem;
+}
+
+.event-card-closure .event-date-month {
+    margin-top: 0.15rem;
+    font-size: 0.7rem;
+}
+
+.event-card-closure .event-title {
+    margin: 0.2rem 0;
+    font-size: 1rem;
+}
+
+.event-card-closure .event-meta {
+    margin: 0;
+    font-size: 0.82rem;
+}
+
+.event-card-closure .event-type {
+    padding: 0.1rem 0.45rem;
+    background-color: transparent;
+    color: var(--warning-color);
+    border: 1px solid var(--warning-color);
+    font-size: 0.7rem;
+}
+
+.event-card-closure .event-type::before {
+    content: "⚠\00a0";
+}
+
 /* Trainingsfrei / Ausfall */
 .event-card.event-card-frei {
     border-left-color: transparent;
@@ -1502,6 +1579,12 @@ html {
 
     .footer-links {
         justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .event-data-source {
+        margin-left: 0;
     }
 }
 

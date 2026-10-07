@@ -34,3 +34,23 @@ Die Website enthält absichtlich keine R2-Zugangsdaten und lädt keine Bilder in
 den Bucket hoch. Der Browser benötigt nur die öffentliche Lese-URL. Für einen
 privaten Bucket wären ein Worker oder ein Backend zum Erzeugen signierter URLs
 notwendig; geheime Zugangsschlüssel dürfen nicht in diese statische Website.
+
+## Trainingsfreie Zeiten
+
+Schulferien und gesetzliche Feiertage in Nordrhein-Westfalen werden aus der
+OpenHolidays API bezogen. Der GitHub-Workflow unter
+`.github/workflows/update-holiday-closures.yml` aktualisiert die Datei
+`assets/data/holiday-closures.js` täglich und veröffentlicht Änderungen über
+den normalen Website-Deploy. Der Workflow benötigt Schreibrechte auf den
+Repository-Inhalt. Die Termin-Timeline zeigt nur Zeiträume mit mindestens
+einem Trainingstag (Dienstag, Freitag oder Samstag) bis zum letzten
+kommenden Termin; wenn keine Termine anstehen, zeigt sie den nächsten
+relevanten Zeitraum.
+
+Unregelmäßige, manuelle Trainingsausfälle werden weiterhin in
+`assets/data/events.js` als Termine mit `ausfall: true` eingetragen. Ferien und
+Feiertage bitte dort nicht zusätzlich pflegen.
+
+Trainingstage und Trainingszeiten werden zentral in
+`assets/data/training-schedule.js` gepflegt und sowohl auf der Trainingsplan-
+als auch auf der Terminseite verwendet.

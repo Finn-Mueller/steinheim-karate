@@ -1,4 +1,4 @@
-(function () {
+(async function () {
     const NOTICE_DAYS_BEFORE = 14; // Anzahl der Tage, die vor dem Ausfall angezeigt werden sollen
     const notice = document.getElementById('training-closures');
     const list = notice && notice.querySelector('.training-closures-list');
@@ -25,9 +25,27 @@
         year: 'numeric'
     });
     const formatDay = new Intl.DateTimeFormat('de-DE', { day: 'numeric' });
+    const trainingWeekdays = window.getTrainingWeekdays();
 
-    const closures = EVENTS
-        .filter((event) => event.ausfall)
+    let closures = EVENTS.filter((event) => event.ausfall);
+    let holidayDataError = false;
+
+    if (typeof HOLIDAY_CLOSURES === 'undefined') {
+        console.error('Die automatisch aktualisierten Ferien- und Feiertagsdaten konnten nicht geladen werden.');
+        holidayDataError = true;
+    } else {
+        closures = closures.concat(HOLIDAY_CLOSURES.filter((event) => {
+            const start = parseLocalDate(event.start);
+            const end = parseLocalDate(event.ende || event.start);
+            while (start <= end) {
+                if (trainingWeekdays.has(start.getDay())) return true;
+                start.setDate(start.getDate() + 1);
+            }
+            return false;
+        }));
+    }
+
+    closures = closures
         .filter((event) => {
             const start = parseLocalDate(event.start);
             const end = parseLocalDate(event.ende || event.start);
@@ -67,5 +85,12 @@
         list.append(item);
     });
 
-    notice.hidden = closures.length === 0;
+    if (holidayDataError) {
+        const item = document.createElement('li');
+        item.className = 'training-closures-error';
+        item.textContent = 'Ferien- und Feiertage konnten nicht geladen werden. Bitte vor dem Training die Durchführung prüfen.';
+        list.append(item);
+    }
+
+    notice.hidden = closures.length === 0 && !holidayDataError;
 })();
