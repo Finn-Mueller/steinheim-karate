@@ -36,70 +36,6 @@
         return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(query);
     }
 
-    /* ---------- .ics erzeugen ---------- */
-
-    const pad = (n) => String(n).padStart(2, '0');
-    const icsDate = (d) => d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate());
-    const icsTime = (t) => t.replace(':', '') + '00';
-    const icsEscape = (s) => String(s)
-        .replace(/\\/g, '\\\\')
-        .replace(/;/g, '\\;')
-        .replace(/,/g, '\\,')
-        .replace(/\r?\n/g, '\\n');
-
-    function slugify(s) {
-        return s.toLowerCase()
-            .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
-            .replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-    }
-
-    function buildIcs(ev) {
-        const start = parseLocalDate(ev.start);
-        const end = parseLocalDate(ev.ende || ev.start);
-        const stamp = new Date().toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
-
-        const lines = [
-            'BEGIN:VCALENDAR',
-            'VERSION:2.0',
-            'PRODID:-//Kempoka Ryu Steinheim//Termine//DE',
-            'CALSCALE:GREGORIAN',
-            'BEGIN:VEVENT',
-            `UID:${ev.start}-${slugify(ev.titel)}@kempoka-ryu`,
-            `DTSTAMP:${stamp}`
-        ];
-
-        if (ev.von) {
-            // Mit Uhrzeit (lokale Zeit, ohne Zeitzonenangabe)
-            lines.push(`DTSTART:${icsDate(start)}T${icsTime(ev.von)}`);
-            if (ev.bis) lines.push(`DTEND:${icsDate(end)}T${icsTime(ev.bis)}`);
-            else lines.push('DURATION:PT1H');
-        } else {
-            // Ganztägig: DTEND ist der Tag NACH dem letzten Tag
-            const endExclusive = new Date(end.getFullYear(), end.getMonth(), end.getDate() + 1);
-            lines.push(`DTSTART;VALUE=DATE:${icsDate(start)}`);
-            lines.push(`DTEND;VALUE=DATE:${icsDate(endExclusive)}`);
-        }
-
-        lines.push(`SUMMARY:${icsEscape(ev.titel)}`);
-        if (ev.ort)  lines.push(`LOCATION:${icsEscape(ev.adresse ? `${ev.ort}, ${ev.adresse}` : ev.ort)}`);
-        if (ev.text) lines.push(`DESCRIPTION:${icsEscape(ev.text)}`);
-        lines.push('END:VEVENT', 'END:VCALENDAR');
-
-        return lines.join('\r\n');
-    }
-
-    function downloadIcs(ev) {
-        const blob = new Blob([buildIcs(ev)], { type: 'text/calendar;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `${slugify(ev.titel)}-${ev.start}.ics`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(() => URL.revokeObjectURL(url), 1000);
-    }
-
     /* ---------- Karten aufbauen ---------- */
 
     function el(tag, className, text) {
@@ -141,12 +77,6 @@
         }
 
         if (ev.text) body.append(el('p', 'event-text', ev.text));
-
-        const button = el('button', 'event-add', 'In Kalender speichern');
-        button.type = 'button';
-        button.setAttribute('aria-label', `${ev.titel} in den eigenen Kalender speichern`);
-        button.addEventListener('click', () => downloadIcs(ev));
-        body.append(button);
 
         card.append(time, body);
         return card;

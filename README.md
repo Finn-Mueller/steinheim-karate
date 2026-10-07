@@ -34,7 +34,3 @@ Die Website enthält absichtlich keine R2-Zugangsdaten und lädt keine Bilder in
 den Bucket hoch. Der Browser benötigt nur die öffentliche Lese-URL. Für einen
 privaten Bucket wären ein Worker oder ein Backend zum Erzeugen signierter URLs
 notwendig; geheime Zugangsschlüssel dürfen nicht in diese statische Website.
-
-## Noch offen
-
-- „In Kalender speichern“ reparieren

@@ -1096,8 +1096,7 @@ html {
 .main-navigation-links a:active,
 .back-to-top:active,
 .nav-toggle:active,
-.dropdown-toggle:active,
-.event-add:active {
+.dropdown-toggle:active {
     scale: var(--press-scale, 0.95);
 }
 
@@ -1106,8 +1105,7 @@ html {
     .main-navigation-links a:active,
     .back-to-top:active,
     .nav-toggle:active,
-    .dropdown-toggle:active,
-    .event-add:active {
+    .dropdown-toggle:active {
         scale: none;
     }
 }
@@ -1266,33 +1264,6 @@ html {
     .event-card::after {
         display: none;
     }
-}
-
-.event-add {
-    margin-top: 0.75rem;
-    padding: 0.4rem 1rem;
-    border: 0;
-    border-radius: 0.6rem;
-    background-color: var(--primary-color);
-    color: var(--background-color);
-    font: inherit;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease, scale 0.1s ease;
-}
-
-/* Hover nur auf dem Button selbst und nur mit echter Maus */
-@media (hover: hover) {
-    .event-add:hover {
-        background-color: var(--tertiary-color);
-        color: var(--background-color);
-    }
-}
-
-.event-add:focus-visible {
-    outline: 2px solid var(--tertiary-color);
-    outline-offset: 3px;
 }
 
 /* Typ-Labels: Text bleibt immer sichtbar, Farbe ist nur Zusatz */
