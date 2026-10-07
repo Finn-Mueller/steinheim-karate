@@ -42,7 +42,7 @@
 
 .gallery-category-link[aria-current="true"] {
     background: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
 }
 
 .gallery-year-filters {

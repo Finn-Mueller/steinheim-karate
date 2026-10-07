@@ -144,7 +144,7 @@ body > :not(.site-header) {
 
 .main-navigation-links .main-navigation-links-contact {
     background-color: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
     padding: 0.5rem 1.25rem;
     border-radius: 0.6rem;
     font-weight: 600;
@@ -560,7 +560,7 @@ button {
     padding: 1rem 1.25rem;
     font-size: 1.25rem;
     background-color: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
 }
 
 .schedule-list {
@@ -656,7 +656,7 @@ button {
     padding: 0.5rem 1.25rem;
     border-radius: 0.6rem;
     background-color: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.2s ease, color 0.2s ease, scale 0.1s ease;
@@ -771,7 +771,7 @@ button {
     padding: 1rem 1.25rem;
     font-size: 1.25rem;
     background-color: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
 }
 
 .price-body {
@@ -814,7 +814,7 @@ button {
     padding: 1rem 1.25rem;
     font-size: 1.35rem;
     background-color: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
 }
 
 .contact-form {
@@ -1019,7 +1019,7 @@ button {
     border: 0;
     border-radius: 50%;
     background-color: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     cursor: pointer;
 
@@ -1061,7 +1061,7 @@ button {
 @media (hover: none) {
     .back-to-top:focus-visible {
         background-color: var(--primary-color);
-        color: var(--quinary-color);
+        color: var(--background-color);
         outline: none;
     }
 }
@@ -1183,7 +1183,7 @@ html {
     min-width: 4rem;
     padding: 0.5rem 0.75rem;
     background-color: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
     border-radius: 0.6rem;
     text-align: center;
 }
@@ -1274,7 +1274,7 @@ html {
     border: 0;
     border-radius: 0.6rem;
     background-color: var(--primary-color);
-    color: var(--quinary-color);
+    color: var(--background-color);
     font: inherit;
     font-size: 0.9rem;
     font-weight: 600;
@@ -1308,7 +1308,7 @@ html {
 
 .event-type {
     background-color: var(--tertiary-color);
-    color: var(--senary-color);
+    color: var(--background-color);
 }
 
 .event-next-label {
@@ -1332,7 +1332,7 @@ html {
 
 .event-card-frei .event-date {
     background-color: var(--warning-color);
-    color: var(--senary-color);
+    color: var(--background-color);
 }
 
 .event-card-frei .event-type {
@@ -1452,7 +1452,7 @@ html {
     /* Kontakt-Button */
     .main-navigation-links .main-navigation-links-contact {
         margin-top: 0.5rem;
-        color: var(--senary-color);
+        color: var(--background-color);
         background-color: var(--primary-color);
     }
 
