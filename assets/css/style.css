@@ -499,6 +499,8 @@ button {
 .home-intro p {
     margin: 0 0 1rem;
     line-height: 1.6;
+    text-align: justify;
+    hyphens: auto;
 }
 
 .home-intro p:last-child {
@@ -1248,6 +1250,11 @@ html {
     flex: 1;
     max-width: clamp(50%, calc(50% + 415px - 50vw), 100%);
     min-width: 0;
+    hyphens: auto;
+}
+
+.event-body p {
+    text-align: justify;
 }
 
 .event-title {
