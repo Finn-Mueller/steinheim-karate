@@ -42,15 +42,15 @@ OpenHolidays API bezogen. Der GitHub-Workflow unter
 `.github/workflows/update-holiday-closures.yml` aktualisiert die Datei
 `assets/data/holiday-closures.js` täglich und veröffentlicht Änderungen über
 den normalen Website-Deploy. Der Workflow benötigt Schreibrechte auf den
-Repository-Inhalt. Die Termin-Timeline zeigt nur Zeiträume mit mindestens
-einem Trainingstag (Dienstag, Freitag oder Samstag) bis zum letzten
-kommenden Termin; wenn keine Termine anstehen, zeigt sie den nächsten
-relevanten Zeitraum.
+Repository-Inhalt. Ferien und Feiertage sowie manuelle Trainingsausfälle
+werden ausschließlich auf der Trainingsplan-Seite angezeigt. Die
+Termine-Seite enthält nur Veranstaltungen.
 
 Unregelmäßige, manuelle Trainingsausfälle werden weiterhin in
-`assets/data/events.js` als Termine mit `ausfall: true` eingetragen. Ferien und
-Feiertage bitte dort nicht zusätzlich pflegen.
+`assets/data/events.js` mit `ausfall: true` eingetragen und auf der
+Trainingsplan-Seite angezeigt. Ferien und Feiertage bitte dort nicht zusätzlich
+pflegen.
 
 Trainingstage und Trainingszeiten werden zentral in
 `assets/data/training-schedule.js` gepflegt und sowohl auf der Trainingsplan-
-als auch auf der Terminseite verwendet.
+Seite verwendet.

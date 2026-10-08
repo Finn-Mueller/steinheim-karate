@@ -49,7 +49,6 @@
         const start = parseLocalDate(ev.start);
 
         const card = el('li', 'event-card');
-        if (ev.ausfall) card.classList.add('event-card-frei', 'event-card-closure');
         if (isNext) card.classList.add('is-next');
 
         const time = el('time', 'event-date');
@@ -60,12 +59,12 @@
         );
 
         const body = el('div', 'event-body');
-        body.append(el('span', 'event-type', ev.ausfall ? 'Kein Training' : ev.typ));
+        body.append(el('span', 'event-type', ev.typ));
         if (isNext) body.append(el('span', 'event-next-label', 'Als Nächstes'));
         body.append(el('h2', 'event-title', ev.titel));
         body.append(el('p', 'event-meta', formatMeta(ev)));
 
-        if (!ev.ausfall && ev.ort) {
+        if (ev.ort) {
             const loc = el('p', 'event-location');
             const link = el('a', null, ev.ort);
             link.href = mapsUrl(ev);
@@ -76,46 +75,10 @@
             body.append(loc);
         }
 
-        if (!ev.ausfall && ev.text) body.append(el('p', 'event-text', ev.text));
+        if (ev.text) body.append(el('p', 'event-text', ev.text));
 
         card.append(time, body);
         return card;
-    }
-
-    function createClosureCard(closure, isNext) {
-        const start = parseLocalDate(closure.start);
-        const card = el('li', 'event-card event-card-frei event-card-closure');
-        if (isNext) card.classList.add('is-next');
-
-        const time = el('time', 'event-date');
-        time.dateTime = closure.start;
-        time.append(
-            el('span', 'event-date-day', String(start.getDate())),
-            el('span', 'event-date-month', fmtMonth.format(start).replace('.', ''))
-        );
-
-        const body = el('div', 'event-body');
-        body.append(el('span', 'event-type', 'Kein Training'));
-        if (isNext) body.append(el('span', 'event-next-label', 'Als Nächstes'));
-        body.append(
-            el('h2', 'event-title', closure.titel),
-            el('p', 'event-meta', formatDateText(closure))
-        );
-
-        card.append(time, body);
-        return card;
-    }
-
-    function includesTrainingDay(closure) {
-        const date = parseLocalDate(closure.start);
-        const end = parseLocalDate(closure.ende || closure.start);
-        const trainingWeekdays = window.getTrainingWeekdays();
-
-        while (date <= end) {
-            if (trainingWeekdays.has(date.getDay())) return true;
-            date.setDate(date.getDate() + 1);
-        }
-        return false;
     }
 
     /* ---------- Vergangenes ausblenden, nächsten hervorheben ---------- */
@@ -124,41 +87,13 @@
     today.setHours(0, 0, 0, 0);
 
     const upcoming = EVENTS
+        .filter((ev) => !ev.ausfall)
         .filter((ev) => parseLocalDate(ev.ende || ev.start) >= today)
         .sort((a, b) => a.start.localeCompare(b.start));
 
-    const nextEvent = upcoming.find((ev) => !ev.ausfall);
-
-    let upcomingClosures = [];
-    const closureError = document.getElementById('closures-error');
-    if (typeof HOLIDAY_CLOSURES === 'undefined') {
-        console.error('Die automatisch aktualisierten Ferien- und Feiertagsdaten konnten nicht geladen werden.');
-        if (closureError) closureError.hidden = false;
-    } else {
-        upcomingClosures = HOLIDAY_CLOSURES
-            .filter((closure) => parseLocalDate(closure.ende || closure.start) >= today)
-            .filter(includesTrainingDay)
-            .sort((a, b) => a.start.localeCompare(b.start));
-    }
-
-    const timelineEnd = upcoming.reduce((latest, ev) => {
-        const eventEnd = parseLocalDate(ev.ende || ev.start);
-        return eventEnd > latest ? eventEnd : latest;
-    }, today);
-    const hasUpcomingEvents = upcoming.length > 0;
-    const visibleClosures = hasUpcomingEvents
-        ? upcomingClosures.filter((closure) => parseLocalDate(closure.start) <= timelineEnd)
-        : upcomingClosures.slice(0, 1);
-    const timelineItems = [
-        ...upcoming.map((event) => ({ date: event.start, event })),
-        ...visibleClosures.map((closure) => ({ date: closure.start, closure }))
-    ].sort((a, b) => a.date.localeCompare(b.date));
-
-    timelineItems.forEach(({ event, closure }) => {
-        eventList.append(event
-            ? createCard(event, event === nextEvent)
-            : createClosureCard(closure, !hasUpcomingEvents));
+    upcoming.forEach((event, index) => {
+        eventList.append(createCard(event, index === 0));
     });
 
-    document.getElementById('events-empty').hidden = timelineItems.length > 0;
+    document.getElementById('events-empty').hidden = upcoming.length > 0;
 })();
