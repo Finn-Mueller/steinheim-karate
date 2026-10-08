@@ -9,16 +9,18 @@
     adresse (optional) genauere Adresse für die Karte, z. B. "Musterstraße 1, 33184 Altenbeken"
     text    (optional)
     ausfall (optional) true = manueller Sonderausfall, wird nie "Als Nächstes"
+    startseite (optional) true = als hervorgehobene Karte auf der Startseite anzeigen
 */
 const EVENTS = [
     {
         start: "2026-10-10",
         typ: "Turnier",
         titel: "14. Kempoka Ryu Cup",
+        startseite: true,
         von: "10:00", bis: "16:00",
         ort: "Gymnasium Sporthalle Steinheim",
         adresse: "Ostpreussenstr. 15, 32839 Steinheim",
-        text: "Offene Kempo-Meisterschaft, für alle Stilrichtungen und Verbände offen. Anmeldung über das Kontaktformular. Zuschauer sind herzlich willkommen."
+        text: "Offene Kempo-Meisterschaft, für alle Stilrichtungen und Verbände offen. Zuschauer sind herzlich willkommen."
     },
     {
         start: "2026-11-28",

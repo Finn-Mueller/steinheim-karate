@@ -1222,8 +1222,46 @@ html {
     display: none;
 }
 
+.home-featured-events {
+    padding-left: 0;
+}
+
+.home-featured-events .event-card::before,
+.home-featured-events .event-card::after {
+    display: none;
+}
+
+.home-featured-event-heading {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.home-featured-event-heading .section-title,
+.home-featured-event-heading p {
+    margin: 0;
+}
+
+.home-featured-event-heading p {
+    flex-shrink: 0;
+}
+
+.home-featured-event {
+    margin-bottom: 3rem;
+}
+
 .event-card.is-next {
     border-left-color: var(--tertiary-color);
+}
+
+@media (max-width: 600px) {
+    .home-featured-event-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
 }
 
 .event-date {

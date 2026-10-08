@@ -1,6 +1,8 @@
 (function () {
     const eventList = document.getElementById('events');
-    if (!eventList || typeof EVENTS === 'undefined') return;
+    if (typeof EVENTS === 'undefined') return;
+    const featuredSection = document.getElementById('home-featured-event');
+    const featuredEventList = document.getElementById('home-featured-events');
 
     /* ---------- Datum ---------- */
 
@@ -45,7 +47,7 @@
         return node;
     }
 
-    function createCard(ev, isNext) {
+    function createCard(ev, isNext, showNextLabel = isNext) {
         const start = parseLocalDate(ev.start);
 
         const card = el('li', 'event-card');
@@ -60,7 +62,7 @@
 
         const body = el('div', 'event-body');
         body.append(el('span', 'event-type', ev.typ));
-        if (isNext) body.append(el('span', 'event-next-label', 'Als Nächstes'));
+        if (showNextLabel) body.append(el('span', 'event-next-label', 'Als Nächstes'));
         body.append(el('h2', 'event-title', ev.titel));
         body.append(el('p', 'event-meta', formatMeta(ev)));
 
@@ -91,9 +93,20 @@
         .filter((ev) => parseLocalDate(ev.ende || ev.start) >= today)
         .sort((a, b) => a.start.localeCompare(b.start));
 
-    upcoming.forEach((event, index) => {
-        eventList.append(createCard(event, index === 0));
-    });
+    if (eventList) {
+        upcoming.forEach((event, index) => {
+            eventList.append(createCard(event, index === 0));
+        });
 
-    document.getElementById('events-empty').hidden = upcoming.length > 0;
+        const emptyState = document.getElementById('events-empty');
+        if (emptyState) emptyState.hidden = upcoming.length > 0;
+    }
+
+    if (featuredSection && featuredEventList) {
+        const featuredEvent = upcoming.find((event) => event.startseite);
+        if (featuredEvent) {
+            featuredEventList.append(createCard(featuredEvent, true, false));
+            featuredSection.hidden = false;
+        }
+    }
 })();

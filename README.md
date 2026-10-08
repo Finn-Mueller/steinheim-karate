@@ -51,6 +51,12 @@ Unregelmäßige, manuelle Trainingsausfälle werden weiterhin in
 Trainingsplan-Seite angezeigt. Ferien und Feiertage bitte dort nicht zusätzlich
 pflegen.
 
+Einzelne bevorstehende Veranstaltungen können in `assets/data/events.js` mit
+`startseite: true` auf der Startseite hervorgehoben werden. Vergangene Termine
+und Trainingsausfälle erscheinen dort nicht. Die Karte verwendet dieselbe
+Darstellung wie die Terminübersicht. Ohne hervorgehobenen kommenden Termin wird
+der Abschnitt vollständig ausgeblendet.
+
 Trainingstage und Trainingszeiten werden zentral in
 `assets/data/training-schedule.js` gepflegt und sowohl auf der Trainingsplan-
 Seite verwendet.
