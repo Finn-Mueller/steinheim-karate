@@ -944,6 +944,9 @@ button {
 
 .download-info {
     flex: 1 1 18rem;
+    max-width: clamp(50%, calc(50% + 415px - 50vw), 100%);
+    min-width: 0;
+    hyphens: auto;
 }
 
 .download-title {
@@ -955,6 +958,7 @@ button {
 .download-text {
     margin: 0 0 0.5rem;
     line-height: 1.4;
+    text-align: justify;
 }
 
 .download-meta {
