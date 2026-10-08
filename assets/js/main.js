@@ -138,8 +138,8 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Beim Vergrößern des Fensters zurücksetzen (passend zum CSS-Breakpoint von 830px)
-window.matchMedia('(min-width: 831px)').addEventListener('change', () => {
+// Beim Vergrößern des Fensters zurücksetzen (passend zum CSS-Breakpoint von 1024px)
+window.matchMedia('(min-width: 1025px)').addEventListener('change', () => {
     setMenu(false);
 });
 
